@@ -69,7 +69,7 @@ function GameCanvas() {
         />
         {showImage && (
           <img
-            src="public/imgs/alba-carmen-herrera.jpg"
+            src="/imgs/alba-carmen-herrera.jpg"
             alt="Reference Image"
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1 }}
           />
