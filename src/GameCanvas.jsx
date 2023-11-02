@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import colors from "./palettes.json";
 
 function GameCanvas() {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
-  const [currentColor, setCurrentColor] = useState("rgba(255, 0, 0, 0.5)");
+  const [currentColor, setCurrentColor] = useState(`rgba(${colors.alba.primaryColor}, 0.5)`);
   const [currentBrushSize, setCurrentBrushSize] = useState("20");
+  const [showImage, setShowImage] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -44,37 +46,46 @@ function GameCanvas() {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   };
 
+  const toggleImage = () => {
+    setShowImage(!showImage); // Toggle the visibility of the image
+  };
+
   return (
     <div>
-      <canvas
-        id="drawing-canvas"
-        ref={canvasRef}
-        width={360}
-        height={300}
-        onMouseDown={() => setDrawing(true)}
-        onMouseUp={() => {
-          setDrawing(false);
-          ctx.beginPath();
-        }}
-        onMouseMove={draw}
-        style={{ backgroundColor: "white" }}
-      />
+      <button onClick={toggleImage}>Show Image</button>
+      <div style={{ position: 'relative' }}>
+        <canvas
+          id="drawing-canvas"
+          ref={canvasRef}
+          width={360}
+          height={300}
+          onMouseDown={() => setDrawing(true)}
+          onMouseUp={() => {
+            setDrawing(false);
+            ctx.beginPath();
+          }}
+          onMouseMove={draw}
+          style={{ backgroundColor: "white" }}
+        />
+        {showImage && (
+          <img
+            src="public/imgs/alba-carmen-herrera.jpg"
+            alt="Reference Image"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1 }}
+          />
+        )}
+      </div>
       <div>
         <div>
           <button
             className="color-button"
-            style={{ backgroundColor: "red" }}
-            onClick={() => setColor("rgba(255, 0, 0, 0.5")}
+            style={{ backgroundColor: `rgb(${colors.alba.primaryColor})` }}
+            onClick={() => setColor(`rgba(${colors.alba.primaryColor}, 0.5`)}
           ></button>
           <button
             className="color-button"
-            style={{ backgroundColor: "green" }}
-            onClick={() => setColor("rgba(0, 255, 0, 0.5")}
-          ></button>
-          <button
-            className="color-button"
-            style={{ backgroundColor: "blue" }}
-            onClick={() => setColor("rgba(0, 0, 255, 0.5")}
+            style={{ backgroundColor: `rgb(${colors.alba.colorTwo})` }}
+            onClick={() => setColor(`rgba(${colors.alba.colorTwo}, 0.5`)}
           ></button>
         </div>
         <div>
