@@ -35,14 +35,15 @@ function PostGame({ socket, roomName }) {
   return (
     <div className='flex flex-col items-center'>
         <div>
-          <h2 className='text-xl mt-5'>Postgame: Nearly_Dreamy_Tate_545</h2>
+          <h2 className='text-xl mt-5'>Postgame: {roomName}</h2>
           <p className='text-center'>Countdown: {countdown} seconds</p>
         </div>
         <div className='flex'>
           <ul className='sm:grid sm:grid-cols-2 gap-7 mt-5'>
             {finalUsers.map((user) => (
-              <li className='text-center' key={user.id}>
+              <li className='text-center mt-5 sm:mt-0' key={user.id}>
                 <p>{user.userName}</p>
+                <img className='mx-auto' width={150} src='/imgs/cow-head.png'/>
                 <p>{user.score}</p>
               </li>
             ))}
@@ -50,6 +51,6 @@ function PostGame({ socket, roomName }) {
         </div>
     </div>
   );
-}
+};
 
 export default PostGame;

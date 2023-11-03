@@ -63,30 +63,33 @@ const MainRoom = () => {
   };
 
   return (
-    <div>
+    <div className='min-h-screen flex flex-col'>
       <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
       </div>
-      {gameState === 'lobby' && 
-        <Lobby
-          roomName={roomName}
-          userList={userList}
-          isPlayerReady={isPlayerReady}
-          handlePlayerReady={handlePlayerReady}
-        />
-      }
-      {gameState === 'gameroom' &&
-        <GameRoom 
-          roomName={roomName}
-          handleScoreSubmit={handleScoreSubmit}
-        />
-      }
-      {gameState === 'postgame' &&
-        <PostGame
-          socket={socket}
-          roomName={roomName}
-        />
-      }
+      <div>
+        {gameState === 'lobby' && 
+          <Lobby
+            roomName={roomName}
+            userList={userList}
+            isPlayerReady={isPlayerReady}
+            handlePlayerReady={handlePlayerReady}
+          />
+        }
+        {gameState === 'gameroom' &&
+          <GameRoom 
+            roomName={roomName}
+            handleScoreSubmit={handleScoreSubmit}
+          />
+        }
+        {gameState === 'postgame' &&
+          <PostGame
+            socket={socket}
+            roomName={roomName}
+          />
+        }
+      </div>
+      <Footer />
     </div>
   );
 };

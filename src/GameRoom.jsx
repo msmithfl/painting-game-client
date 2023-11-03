@@ -36,9 +36,8 @@ function GameRoom({ roomName, handleScoreSubmit }) {
         <GameCanvas />
         <input className='w-20 text-center' onChange={(e) => setScore(e.target.value)} />
       </div>
-
     </div>
   );
-}
+};
 
 export default GameRoom;

@@ -99,6 +99,6 @@ function GameCanvas() {
       </button> */}
     </div>
   );
-}
+};
 
 export default GameCanvas;
