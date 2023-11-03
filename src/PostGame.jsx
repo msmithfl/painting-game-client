@@ -33,17 +33,21 @@ function PostGame({ socket, roomName }) {
   }, [roomName, countdown]);
 
   return (
-    <div>
-      <h2>Postgame</h2>
-      <p>Countdown: {countdown} seconds</p>
-      <ul>
-        {finalUsers.map((user) => (
-          <li key={user.id}>
-            <p>{user.userName}</p>
-            <p>{user.score}</p>
-          </li>
-        ))}
-      </ul>
+    <div className='flex flex-col items-center'>
+        <div>
+          <h2 className='text-xl mt-5'>Postgame: Nearly_Dreamy_Tate_545</h2>
+          <p className='text-center'>Countdown: {countdown} seconds</p>
+        </div>
+        <div className='flex'>
+          <ul className='sm:grid sm:grid-cols-2 gap-7 mt-5'>
+            {finalUsers.map((user) => (
+              <li className='text-center' key={user.id}>
+                <p>{user.userName}</p>
+                <p>{user.score}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
     </div>
   );
 }

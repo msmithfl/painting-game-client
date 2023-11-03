@@ -51,7 +51,7 @@ function GameCanvas() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center space-y-2">
       <button onClick={toggleImage}>Show Image</button>
       <div style={{ position: 'relative' }}>
         <canvas
@@ -71,11 +71,11 @@ function GameCanvas() {
           <img
             src="/imgs/alba-carmen-herrera.jpg"
             alt="Reference Image"
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1 }}
           />
         )}
       </div>
-      <div>
+      <div className="flex">
         <div>
           <button
             className="color-button"
@@ -94,9 +94,9 @@ function GameCanvas() {
           <button onClick={() => setBrushSize("20")}>LG</button>
         </div>
       </div>
-      <button id="clear-button" onClick={clearCanvas}>
+      {/* <button id="clear-button" onClick={clearCanvas}>
         Clear Canvas
-      </button>
+      </button> */}
     </div>
   );
 }

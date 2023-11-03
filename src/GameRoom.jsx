@@ -27,11 +27,16 @@ function GameRoom({ roomName, handleScoreSubmit }) {
   }, [handleScoreSubmit, timer]);
 
   return (
-    <div>
-      <h2>Gameroom: {roomName}</h2>
-      <p>Time left: {timer} seconds</p>
-      <GameCanvas />
-      <input onChange={(e) => setScore(e.target.value)} />
+    <div className='flex flex-col'>
+      <div className='m-1'>
+        <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
+      </div>
+      <div className='flex flex-col items-center'>
+        <p className='pb-1'>Time left: {timer} seconds</p>
+        <GameCanvas />
+        <input className='w-20 text-center' onChange={(e) => setScore(e.target.value)} />
+      </div>
+
     </div>
   );
 }
