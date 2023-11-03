@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const App = () => {
   const navigate = useNavigate();
@@ -30,10 +31,15 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>PAMM Painting Game</h1>
-      <button onClick={createRoom}>Create a Game Room</button>
-      <button>Play Solo</button>
+    <div className='min-h-screen flex flex-col items-center justify-center'>
+      <div className='text-5xl text-center'>
+        <h1>PAMM Painting Game</h1>
+      </div>
+      <div className='flex flex-col mt-8 space-y-3 text-xl'>
+        <button onClick={createRoom}>Create a Game Room</button>
+        <button>Play Solo</button>
+      </div>
+      <Footer/>
     </div>
   );
 };

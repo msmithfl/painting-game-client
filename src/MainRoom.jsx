@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import Lobby from './Lobby.jsx';
 import GameRoom from './GameRoom.jsx';
 import PostGame from './PostGame.jsx';
+import Footer from './Footer.jsx';
 
 const MainRoom = () => {
   const { roomName } = useParams();
