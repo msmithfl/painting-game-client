@@ -55,6 +55,7 @@ function GameCanvas() {
       <button onClick={toggleImage}>Show Image</button>
       <div style={{ position: 'relative' }}>
         <canvas
+          className=" bg-white"
           id="drawing-canvas"
           ref={canvasRef}
           width={360}
@@ -65,13 +66,13 @@ function GameCanvas() {
             ctx.beginPath();
           }}
           onMouseMove={draw}
-          onTouchStart={() => setDrawing(true)}
-          onTouchEnd={() => {
+          onPointerDown={() => setDrawing(true)}
+          onPointerUp={() => {
             setDrawing(false);
             ctx.beginPath();
           }}
-          onTouchMove={draw}
-          style={{ backgroundColor: "white" }}
+          onPointerMove={draw}
+          
         />
         {showImage && (
           <img
