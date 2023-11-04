@@ -71,16 +71,18 @@ const MainRoom = () => {
     <div className='min-h-screen flex flex-col'>
       <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
-        <QRCode className=""  value={qrCodeURL} />
       </div>
       <div>
         {gameState === 'lobby' && 
-          <Lobby
-            roomName={roomName}
-            userList={userList}
-            isPlayerReady={isPlayerReady}
-            handlePlayerReady={handlePlayerReady}
-          />
+          <div className="flex flex-col items-center" >
+            <QRCode className='pt-5' value={qrCodeURL} />
+            <Lobby
+              roomName={roomName}
+              userList={userList}
+              isPlayerReady={isPlayerReady}
+              handlePlayerReady={handlePlayerReady}
+            />
+          </div>
         }
         {gameState === 'gameroom' &&
           <GameRoom 
