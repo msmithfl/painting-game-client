@@ -20,7 +20,9 @@ const MainRoom = () => {
 
   // This joins a room (lobby) with the URL parameter roomName (set in previous screen, App.jsx)
   useEffect(() => {
+
     const newSocket = io('http://localhost:3001'); //https://painting-game-server.onrender.com
+
     setSocket(newSocket);
 
     // Join the room
