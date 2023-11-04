@@ -66,13 +66,19 @@ function GameCanvas() {
             ctx.beginPath();
           }}
           onMouseMove={draw}
-          onPointerDown={() => setDrawing(true)}
-          onPointerUp={() => {
+          onPointerDown={(e) => {
+            e.preventDefault(); // Prevent default pointer behavior
+            setDrawing(true);
+          }}
+          onPointerUp={(e) => {
+            e.preventDefault(); // Prevent default pointer behavior
             setDrawing(false);
             ctx.beginPath();
           }}
-          onPointerMove={draw}
-          
+          onPointerMove={(e) => {
+            e.preventDefault(); // Prevent default pointer behavior
+            draw(e);
+          }}
         />
         {showImage && (
           <img
