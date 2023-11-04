@@ -56,28 +56,22 @@ function GameCanvas() {
       <div style={{ position: 'relative' }}>
         <canvas
           className=" bg-white"
-          style={{ touchAction: 'none' }}
+          style={{ touchAction: 'none' }} // gets rid of scrolling on mobile
           id="drawing-canvas"
           ref={canvasRef}
           width={360}
           height={300}
-          onMouseDown={() => setDrawing(true)}
-          onMouseUp={() => {
-            setDrawing(false);
-            ctx.beginPath();
-          }}
-          onMouseMove={draw}
           onPointerDown={(e) => {
-            e.preventDefault(); // Prevent default pointer behavior
+            //e.preventDefault(); // Prevent default pointer behavior
             setDrawing(true);
           }}
           onPointerUp={(e) => {
-            e.preventDefault(); // Prevent default pointer behavior
+            //e.preventDefault();
             setDrawing(false);
             ctx.beginPath();
           }}
           onPointerMove={(e) => {
-            e.preventDefault(); // Prevent default pointer behavior
+            //e.preventDefault();
             draw(e);
           }}
         />
@@ -116,3 +110,10 @@ function GameCanvas() {
 };
 
 export default GameCanvas;
+
+// onMouseDown={() => setDrawing(true)}
+// onMouseUp={() => {
+//   setDrawing(false);
+//   ctx.beginPath();
+// }}
+// onMouseMove={draw}
