@@ -65,6 +65,12 @@ function GameCanvas() {
             ctx.beginPath();
           }}
           onMouseMove={draw}
+          onTouchStart={() => setDrawing(true)}
+          onTouchEnd={() => {
+            setDrawing(false);
+            ctx.beginPath();
+          }}
+          onTouchMove={draw}
           style={{ backgroundColor: "white" }}
         />
         {showImage && (
