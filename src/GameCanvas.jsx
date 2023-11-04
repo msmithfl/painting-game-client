@@ -56,6 +56,7 @@ function GameCanvas() {
       <div style={{ position: 'relative' }}>
         <canvas
           className=" bg-white"
+          style={{ touchAction: 'none' }}
           id="drawing-canvas"
           ref={canvasRef}
           width={360}
