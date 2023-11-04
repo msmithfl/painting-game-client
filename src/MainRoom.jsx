@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getRandomUsername } from './hooks/getRandomUsername.js';
 import io from 'socket.io-client';
 import Lobby from './Lobby.jsx';
 import GameRoom from './GameRoom.jsx';
 import PostGame from './PostGame.jsx';
 import Footer from './Footer.jsx';
+import QRCode from 'react-qr-code';
 
 const MainRoom = () => {
   const { roomName } = useParams();
+  const location = useLocation(); 
+  const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
   const [userList, setUserList] = useState([]);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [userName, _] = useState(getRandomUsername());
@@ -68,6 +71,7 @@ const MainRoom = () => {
     <div className='min-h-screen flex flex-col'>
       <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
+        <QRCode className=""  value={qrCodeURL} />
       </div>
       <div>
         {gameState === 'lobby' && 
