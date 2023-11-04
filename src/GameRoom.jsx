@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import GameCanvas from './GameCanvas';
 
 function GameRoom({ roomName, handleScoreSubmit }) {
-  const [score, setScore] = useState();
+  const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
   const [timer, setTimer] = useState(20); // Set the initial countdown time in seconds
 
   useEffect(() => {
@@ -34,7 +34,6 @@ function GameRoom({ roomName, handleScoreSubmit }) {
       <div className='flex flex-col items-center'>
         <p className='pb-1'>Time left: {timer} seconds</p>
         <GameCanvas />
-        <input className='w-20 text-center' onChange={(e) => setScore(e.target.value)} />
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import colors from "./palettes.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 function GameCanvas() {
   const canvasRef = useRef(null);
@@ -7,6 +9,8 @@ function GameCanvas() {
   const [drawing, setDrawing] = useState(false);
   const [currentColor, setCurrentColor] = useState(`rgba(${colors.alba.primaryColor}, 0.5)`);
   const [currentBrushSize, setCurrentBrushSize] = useState("20");
+  const [selectedColorButton, setSelectedColorButton] = useState("button1");
+  const [selectedBrushButton, setSelectedBrushButton] = useState("button3");
   const [showImage, setShowImage] = useState(true);
 
   useEffect(() => {
@@ -15,12 +19,14 @@ function GameCanvas() {
     setCtx(context);
   }, []);
 
-  const setColor = (color) => {
+  const setColor = (color, button) => {
     setCurrentColor(color);
+    setSelectedColorButton(button);
   };
 
-  const setBrushSize = (size) => {
+  const setBrushSize = (size, button) => {
     setCurrentBrushSize(size);
+    setSelectedBrushButton(button);
   };
 
   const draw = (e) => {
@@ -52,7 +58,10 @@ function GameCanvas() {
 
   return (
     <div className="flex flex-col items-center space-y-2">
-      <button onClick={toggleImage}>Show Image</button>
+      <button
+        className={`${showImage ? "border-2 border-white" : ""}`}
+        onClick={toggleImage}><FontAwesomeIcon icon={faImage}
+        /></button>
       <div style={{ position: 'relative' }}>
         <canvas
           className=" bg-white"
@@ -62,16 +71,14 @@ function GameCanvas() {
           width={360}
           height={300}
           onPointerDown={(e) => {
-            //e.preventDefault(); // Prevent default pointer behavior
+            //e.preventDefault(); // Prevent default pointer behavior, if needed add to the other onPointer functions
             setDrawing(true);
           }}
           onPointerUp={(e) => {
-            //e.preventDefault();
             setDrawing(false);
             ctx.beginPath();
           }}
           onPointerMove={(e) => {
-            //e.preventDefault();
             draw(e);
           }}
         />
@@ -83,23 +90,42 @@ function GameCanvas() {
           />
         )}
       </div>
-      <div className="flex">
+      <div className="flex gap-3">
         <div>
           <button
-            className="color-button"
+            className={`${selectedColorButton === "button1" ? "border-2 border-white" : ""}`}
             style={{ backgroundColor: `rgb(${colors.alba.primaryColor})` }}
-            onClick={() => setColor(`rgba(${colors.alba.primaryColor}, 0.5`)}
+            onClick={() => {
+              setColor(`rgba(${colors.alba.primaryColor}, 0.5`, "button1")
+            }}
           ></button>
           <button
-            className="color-button"
+            className={`${selectedColorButton === "button2" ? "border-2 border-white" : ""}`}
             style={{ backgroundColor: `rgb(${colors.alba.colorTwo})` }}
-            onClick={() => setColor(`rgba(${colors.alba.colorTwo}, 0.5`)}
+            onClick={() => {
+              setColor(`rgba(${colors.alba.colorTwo}, 0.5`, "button2")
+            }}
           ></button>
         </div>
         <div>
-          <button onClick={() => setBrushSize("2")}>SM</button>
-          <button onClick={() => setBrushSize("10")}>MD</button>
-          <button onClick={() => setBrushSize("20")}>LG</button>
+          <button
+            className={`${selectedBrushButton === "button1" ? "border-2 border-white" : ""}`}
+            onClick={() => {
+              setBrushSize("2", "button1")
+            }}
+          >SM</button>
+          <button
+            className={`${selectedBrushButton === "button2" ? "border-2 border-white" : ""}`}
+            onClick={() => {
+              setBrushSize("10", "button2")
+            }}
+          >MD</button>
+          <button
+            className={`${selectedBrushButton === "button3" ? "border-2 border-white" : ""}`}
+            onClick={() => {
+              setBrushSize("20", "button3")
+            }}
+          >LG</button>
         </div>
       </div>
       {/* <button id="clear-button" onClick={clearCanvas}>
