@@ -11,5 +11,5 @@ export const getRandomUsername = () => {
     const randomLastName = paintersLastNames[Math.floor(Math.random() * paintersLastNames.length)];
     const randomNumber = Math.floor(1000 + Math.random() * 9000); // Generates a random 4-digit number
   
-    return `${randomAdverb}_${randomAdjective}_${randomLastName}_${randomNumber}`;
+    return `${randomAdverb} ${randomAdjective} ${randomLastName}`; // ${randomNumber}
   }

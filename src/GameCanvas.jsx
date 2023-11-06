@@ -56,6 +56,10 @@ function GameCanvas() {
     setShowImage(!showImage); // Toggle the visibility of the image
   };
 
+  const handleImageClick = () => {
+    console.log("clicked!");
+  }
+
   return (
     <div className="flex flex-col items-center space-y-2">
       <button
@@ -84,7 +88,11 @@ function GameCanvas() {
         />
         {showImage && (
           <img
-            src="/imgs/alba-carmen-herrera.jpg"
+            onPointerDown={() => {
+              setDrawing(true);
+              toggleImage();
+            }}
+            src="/imgs/paintings/alba-herrera.jpg"
             alt="Reference Image"
             style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1 }}
           />
