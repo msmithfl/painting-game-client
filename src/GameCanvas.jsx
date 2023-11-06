@@ -88,13 +88,14 @@ function GameCanvas() {
         />
         {showImage && (
           <img
+          
             onPointerDown={() => {
               setDrawing(true);
               toggleImage();
             }}
             src="/imgs/paintings/alba-herrera.jpg"
             alt="Reference Image"
-            style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1, touchAction: 'none' }}
           />
         )}
       </div>
