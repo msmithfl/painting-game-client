@@ -11,7 +11,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady}) {
           {userList.map((user) => (
             <li className='text-center mt-5 sm:mt-0' key={user.id}>
               <p>{user.userName}</p>
-              <img className='mx-auto' width={150} src='/imgs/cow-head.png'/>
+              <img onClick={handlePlayerReady} className='mx-auto' width={150} src='/imgs/cow-head.png'/>
               {user.isReady ? <p>Ready</p> : <p>Not Ready</p>}
             </li>
           ))}
