@@ -13,7 +13,9 @@ function GameCanvas() {
   const [selectedBrushButton, setSelectedBrushButton] = useState("button3");
   const [showImage, setShowImage] = useState(true);
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
+  const [countdown5, setCountdown5] = useState(5);
 
+  // setting up the canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -57,17 +59,34 @@ function GameCanvas() {
     setShowImage(!showImage);
   };
 
-  useEffect(() => {
-    const delay = 5000;
+  // useEffect(() => {
+  //   const delay = 5000;
 
-    const timeoutId = setTimeout(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     toggleImage();
+  //     setInitialImageDisplay(false);
+  //   }, delay);
+
+  //   // Clear the timeout if the component unmounts or if you want to cancel the delay for some reason
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
+  
+  useEffect(() => {
+    if (countdown5 > 0) {
+      const timer5 = setTimeout(() => {
+        setCountdown5(countdown5 - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer5);
+    }
+
+    // when the 5-second countdown finishes
+    if (countdown5 === 0) {
       toggleImage();
       setInitialImageDisplay(false);
-    }, delay);
-
-    // Clear the timeout if the component unmounts or if you want to cancel the delay for some reason
-    return () => clearTimeout(timeoutId);
-  }, []);
+      console.log('5-second countdown finished!');
+    }
+  }, [countdown5]);
 
   return (
     <div className="flex flex-col items-center space-y-2">

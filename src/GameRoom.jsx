@@ -3,7 +3,7 @@ import GameCanvas from './GameCanvas';
 
 function GameRoom({ roomName, handleScoreSubmit, setGameState }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
-  const [timer, setTimer] = useState(20); // Set the initial countdown time in seconds
+  const [timer, setTimer] = useState(65); // Set the initial countdown time in seconds
 
   useEffect(() => {
     // Start the countdown when the component mounts
@@ -37,7 +37,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState }) {
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div>
       <div className='flex flex-col items-center'>
-        <p className='pb-1'>Time left: {timer} seconds</p>
+        <p className='pb-1'>Time left: {timer > 60 ? 60 : timer} seconds</p>
         <GameCanvas />
       </div>
     </div>
