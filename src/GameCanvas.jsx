@@ -12,6 +12,7 @@ function GameCanvas() {
   const [selectedColorButton, setSelectedColorButton] = useState("button1");
   const [selectedBrushButton, setSelectedBrushButton] = useState("button3");
   const [showImage, setShowImage] = useState(true);
+  const [initialImageDisplay, setInitialImageDisplay] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -53,14 +54,27 @@ function GameCanvas() {
   };
 
   const toggleImage = () => {
-    setShowImage(!showImage); // Toggle the visibility of the image
+    setShowImage(!showImage);
   };
+
+  useEffect(() => {
+    const delay = 5000;
+
+    const timeoutId = setTimeout(() => {
+      toggleImage();
+      setInitialImageDisplay(false);
+    }, delay);
+
+    // Clear the timeout if the component unmounts or if you want to cancel the delay for some reason
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="flex flex-col items-center space-y-2">
       <button
         className={`${showImage ? "border-2 border-white" : ""}`}
         onClick={toggleImage}
+        disabled={initialImageDisplay}
       >
         <FontAwesomeIcon icon={faImage}/>
       </button>
@@ -68,6 +82,7 @@ function GameCanvas() {
         {showImage && (
           <img
             onPointerDown={() => {
+              if (initialImageDisplay) {return};
               setDrawing(true);
               toggleImage();
             }}

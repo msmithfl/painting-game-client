@@ -23,8 +23,7 @@ const MainRoom = () => {
 
   // This joins a room (lobby) with the URL parameter roomName (set in previous screen, App.jsx)
   useEffect(() => {
-
-    const newSocket = io('https://painting-game-server.onrender.com'); //http://localhost:3001
+    const newSocket = io('http://localhost:3001'); //https://painting-game-server.onrender.com
 
     setSocket(newSocket);
 
@@ -58,13 +57,6 @@ const MainRoom = () => {
 
   const handleScoreSubmit = (score) => {
     socket.emit('sendScore', score);
-
-    const delayMilliseconds = 500;
-
-    setTimeout(() => {
-      setGameState('postgame');
-      // Other code to run after the delay
-    }, delayMilliseconds);
   };
 
   return (
@@ -89,6 +81,7 @@ const MainRoom = () => {
           <GameRoom 
             roomName={roomName}
             handleScoreSubmit={handleScoreSubmit}
+            setGameState={setGameState}
           />
         }
         {gameState === 'postgame' &&

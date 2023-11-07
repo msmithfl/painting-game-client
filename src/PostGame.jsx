@@ -20,11 +20,10 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady }) {
       if (countdown > 0) {
         setCountdown(countdown - 1);
       } else {
-        // When the countdown reaches 0, reload the page
+        // When the countdown reaches 0, send to lobby and set isPlayerReady to false
         clearInterval(timer); // Stop the countdown timer
         setGameState('lobby');
         handlePlayerReady();
-        //window.location.reload();
       }
     }, 1000); // Update the countdown every second
 

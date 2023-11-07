@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GameCanvas from './GameCanvas';
 
-function GameRoom({ roomName, handleScoreSubmit }) {
+function GameRoom({ roomName, handleScoreSubmit, setGameState }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
   const [timer, setTimer] = useState(20); // Set the initial countdown time in seconds
 
@@ -14,6 +14,11 @@ function GameRoom({ roomName, handleScoreSubmit }) {
       // Check if the timer has reached 1
       if (timer === 1) {
         handleScoreSubmit(score);
+        const delayMilliseconds = 500;
+
+        setTimeout(() => {
+          setGameState('postgame');
+        }, delayMilliseconds);
         
         // Clear the interval to stop the countdown
         clearInterval(countdownInterval);
