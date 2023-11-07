@@ -95,6 +95,8 @@ const MainRoom = () => {
           <PostGame
             socket={socket}
             roomName={roomName}
+            setGameState={setGameState}
+            handlePlayerReady={handlePlayerReady}
           />
         }
       </div>

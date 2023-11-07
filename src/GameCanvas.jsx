@@ -56,17 +56,26 @@ function GameCanvas() {
     setShowImage(!showImage); // Toggle the visibility of the image
   };
 
-  const handleImageClick = () => {
-    console.log("clicked!");
-  }
-
   return (
     <div className="flex flex-col items-center space-y-2">
       <button
         className={`${showImage ? "border-2 border-white" : ""}`}
-        onClick={toggleImage}><FontAwesomeIcon icon={faImage}
-        /></button>
+        onClick={toggleImage}
+      >
+        <FontAwesomeIcon icon={faImage}/>
+      </button>
       <div style={{ position: 'relative' }}>
+        {showImage && (
+          <img
+            onPointerDown={() => {
+              setDrawing(true);
+              toggleImage();
+            }}
+            src="/imgs/paintings/alba-herrera.jpg"
+            alt="Reference Image"
+            style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1, touchAction: 'none' }}
+          />
+        )}
         <canvas
           className=" bg-white"
           style={{ touchAction: 'none' }} // gets rid of scrolling on mobile
@@ -86,18 +95,6 @@ function GameCanvas() {
             draw(e);
           }}
         />
-        {showImage && (
-          <img
-          
-            onPointerDown={() => {
-              setDrawing(true);
-              toggleImage();
-            }}
-            src="/imgs/paintings/alba-herrera.jpg"
-            alt="Reference Image"
-            style={{ position: 'absolute', top: 0, left: 0, width: '360px', zIndex: 1, touchAction: 'none' }}
-          />
-        )}
       </div>
       <div className="flex gap-3">
         <div>
@@ -145,10 +142,3 @@ function GameCanvas() {
 };
 
 export default GameCanvas;
-
-// onMouseDown={() => setDrawing(true)}
-// onMouseUp={() => {
-//   setDrawing(false);
-//   ctx.beginPath();
-// }}
-// onMouseMove={draw}

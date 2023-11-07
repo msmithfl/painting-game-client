@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function PostGame({ socket, roomName }) {
+function PostGame({ socket, roomName, setGameState, handlePlayerReady }) {
   const [finalUsers, setFinalUsers] = useState([]);
   const [countdown, setCountdown] = useState(10); // Initial countdown time in seconds
 
@@ -22,7 +22,9 @@ function PostGame({ socket, roomName }) {
       } else {
         // When the countdown reaches 0, reload the page
         clearInterval(timer); // Stop the countdown timer
-        window.location.reload();
+        setGameState('lobby');
+        handlePlayerReady();
+        //window.location.reload();
       }
     }, 1000); // Update the countdown every second
 
@@ -42,7 +44,10 @@ function PostGame({ socket, roomName }) {
           <ul className='sm:grid sm:grid-cols-2 gap-7 mt-5'>
             {finalUsers.map((user) => (
               <li className='text-center mt-5 sm:mt-0' key={user.id}>
-                <p>{user.userName}</p>
+                <p className={`${socket.id === user.id ? 'font-bold' : ''}`}>
+                  {user.userName}
+                  {socket.id === user.id && <span> (You)</span>}
+                </p>
                 <img className='mx-auto' width={150} src='/imgs/cow-head.png'/>
                 <p>{user.score}</p>
               </li>
