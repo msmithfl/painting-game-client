@@ -70,7 +70,7 @@ function GameCanvas() {
   //   // Clear the timeout if the component unmounts or if you want to cancel the delay for some reason
   //   return () => clearTimeout(timeoutId);
   // }, []);
-  
+
   useEffect(() => {
     if (countdown5 > 0) {
       const timer5 = setTimeout(() => {
@@ -129,6 +129,13 @@ function GameCanvas() {
             draw(e);
           }}
         />
+        {countdown5 > 0 && (
+          <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
+        >
+          <span className="text-5xl font-bold text-black">{countdown5}</span>
+        </div>
+         )}
       </div>
       <div className="flex gap-3">
         <div>
