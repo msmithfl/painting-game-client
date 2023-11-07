@@ -27,7 +27,7 @@ function GameRoom({ roomName, handleScoreSubmit }) {
   }, [handleScoreSubmit, timer]);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col' style={{ touchAction: 'none' }}>
       <div className='m-1'>
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div>
