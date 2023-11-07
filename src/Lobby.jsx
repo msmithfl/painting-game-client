@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Lobby({roomName, userList, isPlayerReady, handlePlayerReady}) {
+function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
   return (
     <div className='flex flex-col items-center'>
       <div>
@@ -10,8 +10,17 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady}) {
         <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-5'>
           {userList.map((user) => (
             <li className='text-center mt-5 sm:mt-0' key={user.id}>
-              <p>{user.userName}</p>
-              <img onClick={handlePlayerReady} className='mx-auto' width={150} src='/imgs/cow-head.png'/>
+              <p className={`${socket.id === user.id ? 'font-bold' : ''}`}>
+                {user.userName}
+                {socket.id === user.id && <span> (You)</span>}
+              </p>
+              <img
+                onClick={() => {
+                  if (socket.id === user.id) {
+                    handlePlayerReady();
+                  }
+                }}
+                className='mx-auto' width={150} src='/imgs/cow-head.png'/>
               {user.isReady ? <p>Ready</p> : <p>Not Ready</p>}
             </li>
           ))}
