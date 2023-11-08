@@ -92,7 +92,7 @@ function GameCanvas({selectedPainting}) {
   return (
     <div className="flex flex-col items-center space-y-2">
       <button
-        className={`${showImage ? "border-2 border-white" : ""}`}
+        className={`border-4 ${showImage ? "border-white" : "border-transparent"}`}
         onClick={toggleImage}
         disabled={initialImageDisplay}
       >
@@ -134,7 +134,7 @@ function GameCanvas({selectedPainting}) {
           <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
         >
-          <span className="text-5xl font-bold text-black">{countdown5}</span>
+          <span className="text-5xl font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{countdown5}</span>
         </div>
          )}
       </div>
@@ -157,7 +157,7 @@ function GameCanvas({selectedPainting}) {
           {Object.values(selectedPainting.colors).map((color) => (
             <button
               key={color}
-              className={`${selectedColorButton === color ? "border-2 border-white" : ""}`}
+              className={`border-4 ${selectedColorButton === color ? "border-white" : "border-transparent"}`}
               style={{ backgroundColor: `rgb(${color})` }}
               onClick={() => {
                 setColor(`rgba(${color}, 0.5`, color)
@@ -167,19 +167,19 @@ function GameCanvas({selectedPainting}) {
         </div>
         <div>
           <button
-            className={`${selectedBrushButton === "button1" ? "border-2 border-white" : ""}`}
+            className={`border-4 ${selectedBrushButton === "button1" ? "border-white" : "border-transparent"}`}
             onClick={() => {
               setBrushSize("2", "button1")
             }}
           >SM</button>
           <button
-            className={`${selectedBrushButton === "button2" ? "border-2 border-white" : ""}`}
+            className={`border-4 ${selectedBrushButton === "button2" ? "border-white" : "border-transparent"}`}
             onClick={() => {
               setBrushSize("10", "button2")
             }}
           >MD</button>
           <button
-            className={`${selectedBrushButton === "button3" ? "border-2 border-white" : ""}`}
+            className={`border-4 ${selectedBrushButton === "button3" ? "border-white" : "border-transparent"}`}
             onClick={() => {
               setBrushSize("20", "button3")
             }}
