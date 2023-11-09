@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import GameCanvas from './GameCanvas';
 import paintings from "./paintings.json";
 
-function GameRoom({ roomName, handleScoreSubmit, setGameState }) {
+function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
   const [timer, setTimer] = useState(65); // Set the initial countdown time in seconds
-  const [selectedPainting, _] = useState(Object.values(paintings)[Math.floor(Math.random() * 2)]); // Store the selected painting
+  const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
 
   useEffect(() => {
     // Start the countdown when the component mounts

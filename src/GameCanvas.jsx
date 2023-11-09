@@ -60,18 +60,7 @@ function GameCanvas({selectedPainting}) {
     setShowImage(!showImage);
   };
 
-  // useEffect(() => {
-  //   const delay = 5000;
-
-  //   const timeoutId = setTimeout(() => {
-  //     toggleImage();
-  //     setInitialImageDisplay(false);
-  //   }, delay);
-
-  //   // Clear the timeout if the component unmounts or if you want to cancel the delay for some reason
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
-
+  // initial 5-second timer
   useEffect(() => {
     if (countdown5 > 0) {
       const timer5 = setTimeout(() => {
@@ -140,20 +129,6 @@ function GameCanvas({selectedPainting}) {
       </div>
       <div className="flex gap-3">
         <div>
-          {/* <button
-            className={`${selectedColorButton === "button1" ? "border-2 border-white" : ""}`}
-            style={{ backgroundColor: `rgb(${paintings.alba.colors.primaryColor})` }}
-            onClick={() => {
-              setColor(`rgba(${paintings.alba.colors.primaryColor}, 0.5`, "button1")
-            }}
-          ></button>
-          <button
-            className={`${selectedColorButton === "button2" ? "border-2 border-white" : ""}`}
-            style={{ backgroundColor: `rgb(${paintings.alba.colors.colorTwo})` }}
-            onClick={() => {
-              setColor(`rgba(${paintings.alba.colors.colorTwo}, 0.5`, "button2")
-            }}
-          ></button> */}
           {Object.values(selectedPainting.colors).map((color) => (
             <button
               key={color}

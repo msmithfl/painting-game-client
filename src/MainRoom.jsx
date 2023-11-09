@@ -16,6 +16,7 @@ const MainRoom = () => {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [userName, _] = useState(getRandomUsername());
   const [gameState, setGameState] = useState('lobby');
+  const [randomValue, setRandomValue] = useState(0);
   
   const [socket, setSocket] = useState(null);
   
@@ -23,7 +24,7 @@ const MainRoom = () => {
 
   // This joins a room (lobby) with the URL parameter roomName (set in previous screen, App.jsx)
   useEffect(() => {
-    const newSocket = io('https://painting-game-server.onrender.com'); //http://localhost:3001
+    const newSocket = io('http://localhost:3001'); //https://painting-game-server.onrender.com
 
     setSocket(newSocket);
 
@@ -34,6 +35,13 @@ const MainRoom = () => {
     newSocket.on('updateUserList', (users) => {
       setUserList(users);
     });
+
+    newSocket.emit('generateNumber', roomName);
+
+    newSocket.on('receiveNumber', (randomValue) => {
+      setRandomValue(randomValue);
+    })
+
   }, []);
 
   // Checking if all players are ready
@@ -45,7 +53,7 @@ const MainRoom = () => {
       console.log('All Users Ready!');
       setGameState('gameroom');
     } else {
-      console.log('Waiting for Users...')
+      console.log('Waiting for Users...');
     }
   }, [userList]);
 
@@ -82,6 +90,7 @@ const MainRoom = () => {
             roomName={roomName}
             handleScoreSubmit={handleScoreSubmit}
             setGameState={setGameState}
+            randomValue={randomValue}
           />
         }
         {gameState === 'postgame' &&
