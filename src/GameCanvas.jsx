@@ -110,7 +110,7 @@ function GameCanvas({selectedPainting, timer, score}) {
           />
         )}
         <canvas
-          className=" bg-white drop-shadow-md"
+          className=" bg-white drop-shadow-lg"
           style={{ touchAction: 'none' }} // gets rid of scrolling on mobile
           id="drawing-canvas"
           ref={canvasRef}
