@@ -24,5 +24,40 @@
         "height": "403"
       },
       "path": "/imgs/paintings/new-hat-rivero.jpg"
+    },
+    "under-the-flamboyan": {
+      "key": "under-the-flamboyan",
+      "colors": {
+        "primaryColor": "81, 195, 34",
+        "colorTwo": "216, 112, 59",
+        "colorThree": "255, 82, 25",
+        "colorFour": "153, 162, 164",
+        "colorFive": "131, 112, 166",
+        "colorSix": "65, 176, 220",
+        "colorSeven": "165, 99, 32"
+      },
+      "dimensions": {
+        "width": "300",
+        "height": "480"
+      },
+      "path": "/imgs/paintings/under-the-flamboyan-guzman.jpg"
+    },
+    "common-history": {
+      "key": "common-history",
+      "colors": {
+        "primaryColor": "2, 79, 63",
+        "colorTwo": "240, 139, 153",
+        "colorThree": "141, 113, 190",
+        "colorFour": "0, 170, 159",
+        "colorFive": "124, 174, 0",
+        "colorSix": "234, 55, 8",
+        "colorSeven": "165, 99, 32",
+        "colorEight": "252, 180, 3"
+      },
+      "dimensions": {
+        "width": "300",
+        "height": "425"
+      },
+      "path": "/imgs/paintings/common-history-craig-martin.jpg"
     }
   }

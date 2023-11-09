@@ -36,12 +36,13 @@ const MainRoom = () => {
       setUserList(users);
     });
 
+    // Generating a random number for coordinating painting choice in GameRoom
     newSocket.emit('generateNumber', roomName);
 
+    // Setting random number
     newSocket.on('receiveNumber', (randomValue) => {
       setRandomValue(randomValue);
     })
-
   }, []);
 
   // Checking if all players are ready
