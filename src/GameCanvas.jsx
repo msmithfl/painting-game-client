@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import paintings from "./paintings.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faClock } from '@fortawesome/free-solid-svg-icons';
 
-function GameCanvas({selectedPainting}) {
+function GameCanvas({selectedPainting, timer, score}) {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
@@ -80,13 +80,22 @@ function GameCanvas({selectedPainting}) {
 
   return (
     <div className="flex flex-col items-center space-y-2">
-      <button
-        className={`border-4 ${showImage ? "border-white" : "border-transparent"}`}
-        onClick={toggleImage}
-        disabled={initialImageDisplay}
-      >
-        <FontAwesomeIcon icon={faImage}/>
-      </button>
+      <div className="flex items-center gap-6">
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon icon={faClock}/>
+          <h2 className='text-3xl'>{timer > 60 ? 60 : timer}</h2>
+        </div>
+        <button
+          className={`border-4 ${showImage ? "border-white" : "border-transparent"}`}
+          onClick={toggleImage}
+          disabled={initialImageDisplay}
+        >
+          <FontAwesomeIcon icon={faImage}/>
+        </button>
+        <div>
+          <h2 className=" text-3xl">{score}%</h2>
+        </div>
+      </div>
       <div style={{ position: 'relative' }}>
         {showImage && (
           <img
@@ -127,7 +136,7 @@ function GameCanvas({selectedPainting}) {
         </div>
          )}
       </div>
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 items-center">
         <div>
           {Object.values(selectedPainting.colors).map((color) => (
             <button

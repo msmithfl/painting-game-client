@@ -39,8 +39,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue }) {
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div>
       <div className='flex flex-col items-center'>
-        <p className='pb-1'>Time left: {timer > 60 ? 60 : timer} seconds</p>
-        <GameCanvas selectedPainting={selectedPainting} />
+        <GameCanvas selectedPainting={selectedPainting} timer={timer} score={score} />
       </div>
     </div>
   );
