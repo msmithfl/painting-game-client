@@ -4,8 +4,8 @@ import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 
 function Footer() {
   return (
-    <div className='sticky top-[100vh] mb-2 text-center'>
-        <p><FontAwesomeIcon icon={faCopyright} /> 2023 Pérez Art Museum Miami </p>
+    <div className='sticky top-[100vh] my-3 text-center'>
+        <small><FontAwesomeIcon icon={faCopyright} /> 2023 Pérez Art Museum Miami </small>
     </div>
   );
 };

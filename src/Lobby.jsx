@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
+
   return (
     <div className='flex flex-col items-center'>
       <div>
@@ -26,7 +27,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
           ))}
         </ul>
       </div>
-        <button className='mt-4' onClick={handlePlayerReady}>{isPlayerReady ? "Waiting..." : "Ready?"}</button>
+        <button className='mt-4 p-4 rounded-md font-bold' onClick={handlePlayerReady}>{isPlayerReady ? "Waiting..." : "Ready?"}</button>
     </div>
   );
 };

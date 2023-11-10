@@ -73,7 +73,6 @@ function GameCanvas({selectedPainting, timer, score}) {
     if (countdown5 === 0) {
       toggleImage();
       setInitialImageDisplay(false);
-      console.log('5-second countdown finished!');
     }
   }, [countdown5]);
 
@@ -136,6 +135,26 @@ function GameCanvas({selectedPainting, timer, score}) {
          )}
       </div>
       <div className="flex gap-3 items-center">
+            <div>
+              <button
+                className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button1' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
+                onClick={() => {
+                  setBrushSize("2", "button1")
+                }}
+              >SM</button>
+              <button
+                className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button2' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
+                onClick={() => {
+                  setBrushSize("10", "button2")
+                }}
+              >MD</button>
+              <button
+                className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button3' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
+                onClick={() => {
+                  setBrushSize("20", "button3")
+                }}
+              >LG</button>
+            </div>
         <div>
           {Object.values(selectedPainting.colors).map((color) => (
             <button
@@ -147,26 +166,6 @@ function GameCanvas({selectedPainting, timer, score}) {
               }}
             ></button>
           ))}
-        </div>
-        <div>
-          <button
-            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button1' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
-            onClick={() => {
-              setBrushSize("2", "button1")
-            }}
-          >SM</button>
-          <button
-            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button2' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
-            onClick={() => {
-              setBrushSize("10", "button2")
-            }}
-          >MD</button>
-          <button
-            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button3' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
-            onClick={() => {
-              setBrushSize("20", "button3")
-            }}
-          >LG</button>
         </div>
       </div>
       {/* <button id="clear-button" onClick={clearCanvas}>

@@ -29,7 +29,10 @@
   cursor: pointer;
   transition: border-color 0.25s;
 } */
-/* 
+button {
+  background-color: #1a1a1a;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -41,4 +44,4 @@
   button {
     background-color: #f9f9f9;
   }
-} */
+}
