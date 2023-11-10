@@ -24,7 +24,7 @@ const MainRoom = () => {
 
   // This joins a room (lobby) with the URL parameter roomName (set in previous screen, App.jsx)
   useEffect(() => {
-    const newSocket = io('https://painting-game-server.onrender.com'); //http://localhost:3001
+    const newSocket = io('http://localhost:3001'); //https://painting-game-server.onrender.com
 
     setSocket(newSocket);
 
@@ -61,7 +61,16 @@ const MainRoom = () => {
   const handlePlayerReady = () => {
     setIsPlayerReady(!isPlayerReady);
     // Emit the 'playerReady' event to the server
-    if (socket) { socket.emit('playerReady', isPlayerReady); }
+    if (socket) {
+      socket.emit('playerReady', isPlayerReady);
+      // Generating a random number for coordinating painting choice in GameRoom
+      socket.emit('generateNumber', roomName);
+
+      // Setting random number
+      socket.on('receiveNumber', (randomValue) => {
+      setRandomValue(randomValue);
+    })
+    }
   }
 
   const handleScoreSubmit = (score) => {

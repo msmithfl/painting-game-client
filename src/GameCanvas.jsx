@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import paintings from "./paintings.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faClock } from '@fortawesome/free-solid-svg-icons';
 
@@ -86,7 +85,7 @@ function GameCanvas({selectedPainting, timer, score}) {
           <h2 className='text-3xl'>{timer > 60 ? 60 : timer}</h2>
         </div>
         <button
-          className={`border-4 ${showImage ? "border-white" : "border-transparent"}`}
+          className={`rounded-md px-3 py-1 border-4 ${showImage ? "border-white" : "border-transparent"}`}
           onClick={toggleImage}
           disabled={initialImageDisplay}
         >
@@ -110,7 +109,7 @@ function GameCanvas({selectedPainting, timer, score}) {
           />
         )}
         <canvas
-          className=" bg-white drop-shadow-lg"
+          className="bg-white drop-shadow-lg"
           style={{ touchAction: 'none' }} // gets rid of scrolling on mobile
           id="drawing-canvas"
           ref={canvasRef}
@@ -136,12 +135,12 @@ function GameCanvas({selectedPainting, timer, score}) {
         </div>
          )}
       </div>
-      <div className="flex flex-col gap-3 items-center">
+      <div className="flex gap-3 items-center">
         <div>
           {Object.values(selectedPainting.colors).map((color) => (
             <button
               key={color}
-              className={`border-4 ${selectedColorButton === color ? "border-white" : "border-transparent"}`}
+              className={`h-12 w-7 rounded-md border-4 transform transition-transform ${selectedColorButton === color ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
               style={{ backgroundColor: `rgb(${color})` }}
               onClick={() => {
                 setColor(`rgba(${color}, 0.5`, color)
@@ -151,19 +150,19 @@ function GameCanvas({selectedPainting, timer, score}) {
         </div>
         <div>
           <button
-            className={`border-4 ${selectedBrushButton === "button1" ? "border-white" : "border-transparent"}`}
+            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button1' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
             onClick={() => {
               setBrushSize("2", "button1")
             }}
           >SM</button>
           <button
-            className={`border-4 ${selectedBrushButton === "button2" ? "border-white" : "border-transparent"}`}
+            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button2' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
             onClick={() => {
               setBrushSize("10", "button2")
             }}
           >MD</button>
           <button
-            className={`border-4 ${selectedBrushButton === "button3" ? "border-white" : "border-transparent"}`}
+            className={`bg-slate-400 rounded-md py-2 w-8 border-4 transform transition-transform ${selectedBrushButton === 'button3' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
             onClick={() => {
               setBrushSize("20", "button3")
             }}
