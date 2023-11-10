@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function PostGame({ socket, roomName, setGameState, handlePlayerReady }) {
+function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGetRandNum }) {
   const [finalUsers, setFinalUsers] = useState([]);
   const [countdown, setCountdown] = useState(10); // Initial countdown time in seconds
 
@@ -24,6 +24,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady }) {
         clearInterval(timer); // Stop the countdown timer
         setGameState('lobby');
         handlePlayerReady();
+        handleGetRandNum(socket);
       }
     }, 1000); // Update the countdown every second
 

@@ -36,13 +36,8 @@ const MainRoom = () => {
       setUserList(users);
     });
 
-    // Generating a random number for coordinating painting choice in GameRoom
-    newSocket.emit('generateNumber', roomName);
-
-    // Setting random number
-    newSocket.on('receiveNumber', (randomValue) => {
-      setRandomValue(randomValue);
-    })
+    // set random painting
+    handleGetRandNum(newSocket);
   }, []);
 
   // Checking if all players are ready
@@ -62,20 +57,23 @@ const MainRoom = () => {
     setIsPlayerReady(!isPlayerReady);
     // Emit the 'playerReady' event to the server
     if (socket) {
-      socket.emit('playerReady', isPlayerReady);
-      // Generating a random number for coordinating painting choice in GameRoom
-      socket.emit('generateNumber', roomName);
-
-      // Setting random number
-      socket.on('receiveNumber', (randomValue) => {
-      setRandomValue(randomValue);
-    })
+      socket.emit('playerReady', isPlayerReady);  
     }
   }
 
   const handleScoreSubmit = (score) => {
     socket.emit('sendScore', score);
   };
+
+  const handleGetRandNum = (socket) => {
+    // Generating a random number for coordinating painting choice in GameRoom
+    socket.emit('generateNumber', roomName);
+      
+    // Setting random number
+    socket.on('receiveNumber', (randomValue) => {
+      setRandomValue(randomValue);
+    })
+  }
 
   return (
     <div className='min-h-screen flex flex-col'>
@@ -109,6 +107,7 @@ const MainRoom = () => {
             roomName={roomName}
             setGameState={setGameState}
             handlePlayerReady={handlePlayerReady}
+            handleGetRandNum={handleGetRandNum}
           />
         }
       </div>
