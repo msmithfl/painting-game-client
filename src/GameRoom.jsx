@@ -4,7 +4,7 @@ import paintings from "./paintings.json";
 
 function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, socket }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
-  const [timer, setTimer] = useState(65); // Set the initial countdown time in seconds
+  const [timer, setTimer] = useState(15); // Set the initial countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
 
   useEffect(() => {

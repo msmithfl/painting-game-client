@@ -21,7 +21,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
                     handlePlayerReady();
                   }
                 }}
-                className={`mx-auto ${socket.id === user.id ? 'cursor-pointer' : ''}`} width={150} src='/imgs/cow-head.png'/>
+                className={`mx-auto ${socket.id === user.id ? 'cursor-pointer' : ''}`} width={150} src={user.playerIcon}/>
               {user.isReady ? <p>Ready</p> : <p>Not Ready</p>}
             </li>
           ))}

@@ -9,7 +9,10 @@
         "width": "360",
         "height": "300"
       },
-      "path": "/imgs/paintings/alba-herrera.jpg"
+      "path": "/imgs/paintings/alba-herrera.jpg",
+      "title": "Alba",
+      "artist": "Carmen Herrera",
+      "year": "2014"
     },
     "new-hat": {
       "key": "new-hat",
@@ -17,13 +20,18 @@
         "primaryColor": "1, 55, 127",
         "colorTwo": "232, 190, 105",
         "colorThree": "132, 38, 8",
-        "colorFour": "118, 120, 119"
+        "colorFour": "118, 120, 119",
+        "colorFive": "255, 255, 255",
+        "colorSix": "1, 137, 123"
       },
       "dimensions": {
         "width": "300",
         "height": "403"
       },
-      "path": "/imgs/paintings/new-hat-rivero.jpg"
+      "path": "/imgs/paintings/new-hat-rivero.jpg",
+      "title": "New Hat",
+      "artist": "Kenny Rivero",
+      "year": "2019"
     },
     "under-the-flamboyan": {
       "key": "under-the-flamboyan",
@@ -40,7 +48,10 @@
         "width": "300",
         "height": "480"
       },
-      "path": "/imgs/paintings/under-the-flamboyan-guzman.jpg"
+      "path": "/imgs/paintings/under-the-flamboyan-guzman.jpg",
+      "title": "Under the Flamboyan",
+      "artist": "Hulda Guzmán",
+      "year": "2020"
     },
     "common-history": {
       "key": "common-history",
@@ -58,6 +69,9 @@
         "width": "300",
         "height": "425"
       },
-      "path": "/imgs/paintings/common-history-craig-martin.jpg"
+      "path": "/imgs/paintings/common-history-craig-martin.jpg",
+      "title": "Common History: Dance",
+      "artist": "Michael Craig-Martin",
+      "year": "1999"
     }
   }
