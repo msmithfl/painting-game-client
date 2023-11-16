@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faClock } from '@fortawesome/free-solid-svg-icons';
+import { deltaE } from "./hooks/comparePixels";
+import { getReferenceCanvasData } from "./hooks/getReferenceCanvasData";
+import { getPlayerCanvasData } from "./hooks/getPlayerCanvasData";
 
 function GameCanvas({selectedPainting, timer, score}) {
   const canvasRef = useRef(null);
@@ -13,13 +16,15 @@ function GameCanvas({selectedPainting, timer, score}) {
   const [showImage, setShowImage] = useState(true);
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
   const [countdown5, setCountdown5] = useState(5);
-
+  const [refPixelData, setRefPixelData] = useState();
 
   // setting up the canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     setCtx(context);
+
+    handleGetReferenceData();
   }, []);
 
   const setColor = (color, button) => {
@@ -75,6 +80,41 @@ function GameCanvas({selectedPainting, timer, score}) {
       setInitialImageDisplay(false);
     }
   }, [countdown5]);
+
+  const handleGetCanvasData = () => {
+    const playerCanvasData = getPlayerCanvasData(ctx, selectedPainting);
+    console.log("Player Canvas Data:");
+    console.log(playerCanvasData);
+  }
+
+  const handleGetReferenceData = async () => {
+    try {
+      const refData = await getReferenceCanvasData(selectedPainting);
+      setRefPixelData(refData);
+    } catch (error) {
+      console.error('Error fetching reference data:', error);
+    }
+  };
+
+  const handleGetDeltaE = () => {
+    //console.log("Ref Canvas Data:")
+    //console.log(refPixelData);
+
+    const playerCanvasData = getPlayerCanvasData(ctx, selectedPainting);
+    //console.log("Player Canvas Data:");
+    //console.log(playerCanvasData);
+
+    const deltaEValues = [];
+
+    for (let i = 0; i < refPixelData.length; i++) {
+      deltaE(refPixelData[i], playerCanvasData[i]); 
+
+      // Push the RGB values into the array
+      deltaEValues.push(deltaE(refPixelData[i], playerCanvasData[i]));
+    }
+    console.log("Delta E Values:")
+    console.log(deltaEValues);
+  }
 
   return (
     <div className="flex flex-col items-center space-y-2">
@@ -171,6 +211,11 @@ function GameCanvas({selectedPainting, timer, score}) {
       {/* <button id="clear-button" onClick={clearCanvas}>
         Clear Canvas
       </button> */}
+      <div  className="flex gap-3 items-center">
+        <button className="p-3" onClick={handleGetCanvasData}>Get Canvas Data</button>
+        <button className="p-3" onClick={() => console.log(refPixelData)}>Get Ref Data</button>
+        <button className="p-3" onClick={handleGetDeltaE}>Get Delta E</button>
+      </div>
     </div>
   );
 };

@@ -22,7 +22,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
       if (countdown > 0) {
         setCountdown(countdown - 1);
       } else {
-        // When the countdown reaches 0, send to lobby and set isPlayerReady to false
+        // When the countdown reaches 0, send to lobby and set isPlayerReady to false, generate new number for next painting
         clearInterval(timer); // Stop the countdown timer
         setGameState('lobby');
         handlePlayerReady();
