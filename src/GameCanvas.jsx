@@ -21,9 +21,10 @@ function GameCanvas({selectedPainting, timer, score}) {
   // setting up the canvas
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext("2d", { willReadFrequently: true });
     setCtx(context);
-
+    
+    // getting pixel data from ref image
     handleGetReferenceData();
   }, []);
 

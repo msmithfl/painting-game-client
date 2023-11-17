@@ -5,11 +5,11 @@ import paintings from "./paintings.json";
 function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, socket }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
   const [timer, setTimer] = useState(15); // Set the initial countdown time in seconds
-  const [selectedPainting, _] = useState(Object.values(paintings)[3]); // Randomly selected painting
+  const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
 
   useEffect(() => {
-    //console.log(randomValue);
-    //socket.emit('setUsedPaintings', roomName, randomValue);
+    console.log(randomValue);
+    socket.emit('setUsedPaintings', roomName, randomValue);
   }, [])
 
   useEffect(() => {

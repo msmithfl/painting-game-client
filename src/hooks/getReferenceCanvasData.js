@@ -1,7 +1,7 @@
 export const getReferenceCanvasData = (selectedPainting) => {
     return new Promise((resolve, reject) => {
       const referenceCanvas = document.createElement('canvas');
-      const referenceContext = referenceCanvas.getContext('2d');
+      const referenceContext = referenceCanvas.getContext('2d', { willReadFrequently: true });
       referenceCanvas.width = selectedPainting.dimensions.width;
       referenceCanvas.height = selectedPainting.dimensions.height;
   
