@@ -236,11 +236,11 @@ function GameCanvas({selectedPainting, timer, score}) {
       {/* <button id="clear-button" onClick={clearCanvas}>
         Clear Canvas
       </button> */}
-      <div  className="flex gap-3 items-center">
+      {/* <div  className="flex gap-3 items-center">
         <button className="p-3" onClick={handleGetCanvasData}>Get Canvas Data</button>
         <button className="p-3" onClick={() => console.log(refPixelData)}>Get Ref Data</button>
         <button className="p-3" onClick={handleGetDeltaE}>Get Delta E</button>
-      </div>
+      </div> */}
     </div>
   );
 };
