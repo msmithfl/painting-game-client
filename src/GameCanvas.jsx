@@ -17,6 +17,7 @@ function GameCanvas({selectedPainting, timer, score}) {
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
   const [countdown5, setCountdown5] = useState(5);
   const [refPixelData, setRefPixelData] = useState();
+  const [finalScore, setFinalScore] = useState(0);
 
   // setting up the canvas
   useEffect(() => {
@@ -107,14 +108,37 @@ function GameCanvas({selectedPainting, timer, score}) {
 
     const deltaEValues = [];
 
+    let isCanvasBlank = true;
+    const blankArray = [0, 0, 0];
+
     for (let i = 0; i < refPixelData.length; i++) {
+      // checks if canvas is blank/all white
+      if (playerCanvasData[i].toString() !== blankArray.toString()) {
+        isCanvasBlank = false;
+      }
       deltaE(refPixelData[i], playerCanvasData[i]); 
 
       // Push the RGB values into the array
       deltaEValues.push(deltaE(refPixelData[i], playerCanvasData[i]));
     }
-    console.log("Delta E Values:")
+    console.log("Is Canvas Blank?");
+    console.log(isCanvasBlank);
+
+    console.log("Delta E Values:");
     console.log(deltaEValues);
+
+    let totalDeltaE = 0;
+
+    for (let i = 0; i < deltaEValues.length; i++) {
+      totalDeltaE += deltaEValues[i];
+    }
+
+    const avgDeltaE = totalDeltaE / deltaEValues.length;
+
+    console.log(avgDeltaE);
+
+    console.log(100 - avgDeltaE);
+
   }
 
   return (
@@ -131,9 +155,9 @@ function GameCanvas({selectedPainting, timer, score}) {
         >
           <FontAwesomeIcon icon={faImage}/>
         </button>
-        <div>
+        {/* <div>
           <h2 className=" text-3xl">{score}%</h2>
-        </div>
+        </div> */}
       </div>
       <div style={{ position: 'relative' }}>
         {showImage && (
