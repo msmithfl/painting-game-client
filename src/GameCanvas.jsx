@@ -5,7 +5,7 @@ import { deltaE } from "./hooks/comparePixels";
 import { getReferenceCanvasData } from "./hooks/getReferenceCanvasData";
 import { getPlayerCanvasData } from "./hooks/getPlayerCanvasData";
 
-function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit}) {
+function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
@@ -16,8 +16,6 @@ function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit
   const [showImage, setShowImage] = useState(true);
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
   const [countdown5, setCountdown5] = useState(5);
-  //const [refPixelData, setRefPixelData] = useState();
-  //const [finalScore, setFinalScore] = useState(0);
   const [refPixelValues, setRefPixelValues] = useState([]);
 
   // setting up the canvas
@@ -61,8 +59,7 @@ function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit
     const timer = setTimeout(() => {
       console.log("Game Over");
       handleGetDeltaE();
-      //handleScoreSubmit(finalScore);
-    }, 200); // 0.2 seconds in milliseconds
+    }, 200);
   
     return () => clearTimeout(timer);
   }, [gameOver]);
@@ -200,9 +197,6 @@ function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit
         >
           <FontAwesomeIcon icon={faImage}/>
         </button>
-        {/* <div>
-          <h2 className=" text-3xl">{score}%</h2>
-        </div> */}
       </div>
       <div style={{ position: 'relative' }}>
         {showImage && (
