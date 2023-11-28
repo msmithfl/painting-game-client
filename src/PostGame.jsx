@@ -3,7 +3,7 @@ import paintings from "./paintings.json";
 
 function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGetRandNum, randomValue }) {
   const [finalUsers, setFinalUsers] = useState([]);
-  const [countdown, setCountdown] = useState(10); // Initial countdown time in seconds
+  const [countdown, setCountdown] = useState(20); // Initial countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]);
 
   const handleGetUsers = () => {

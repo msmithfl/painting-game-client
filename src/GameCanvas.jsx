@@ -173,7 +173,11 @@ function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit
       totalDeltaE += deltaEValues[i];
     }
 
-    const avgDeltaE = (totalDeltaE / deltaEValues.length).toFixed(1);
+    var avgDeltaE = (totalDeltaE / deltaEValues.length).toFixed(1);
+
+    if(isCanvasBlank) {
+      avgDeltaE = 100;
+    }
 
     //sending final score
     handleScoreSubmit(100 - avgDeltaE);
