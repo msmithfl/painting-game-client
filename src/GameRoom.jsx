@@ -4,8 +4,9 @@ import paintings from "./paintings.json";
 
 function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, socket }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
-  const [timer, setTimer] = useState(65); // Set the initial countdown time in seconds
+  const [timer, setTimer] = useState(35); // Set the initial countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     console.log(randomValue);
@@ -20,7 +21,8 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
 
       // Check if the timer has reached 1
       if (timer === 1) {
-        handleScoreSubmit(score);
+        setGameOver(true);
+        //handleScoreSubmit(score);
         const delayMilliseconds = 500;
 
         setTimeout(() => {
@@ -44,7 +46,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div>
       <div className='flex flex-col items-center'>
-        <GameCanvas selectedPainting={selectedPainting} timer={timer} score={score} />
+        <GameCanvas selectedPainting={selectedPainting} timer={timer} score={score} gameOver={gameOver} handleScoreSubmit={handleScoreSubmit} />
       </div>
     </div>
   );

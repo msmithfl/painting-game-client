@@ -5,7 +5,7 @@ import { deltaE } from "./hooks/comparePixels";
 import { getReferenceCanvasData } from "./hooks/getReferenceCanvasData";
 import { getPlayerCanvasData } from "./hooks/getPlayerCanvasData";
 
-function GameCanvas({selectedPainting, timer, score}) {
+function GameCanvas({selectedPainting, timer, score, gameOver, handleScoreSubmit}) {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
@@ -17,7 +17,7 @@ function GameCanvas({selectedPainting, timer, score}) {
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
   const [countdown5, setCountdown5] = useState(5);
   //const [refPixelData, setRefPixelData] = useState();
-  const [finalScore, setFinalScore] = useState(0);
+  //const [finalScore, setFinalScore] = useState(0);
   const [refPixelValues, setRefPixelValues] = useState([]);
 
   // setting up the canvas
@@ -57,7 +57,15 @@ function GameCanvas({selectedPainting, timer, score}) {
     img.src = selectedPainting.path;
   }, []);
   
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log("Game Over");
+      handleGetDeltaE();
+      //handleScoreSubmit(finalScore);
+    }, 200); // 0.2 seconds in milliseconds
   
+    return () => clearTimeout(timer);
+  }, [gameOver]);
 
   const setColor = (color, button) => {
     setCurrentColor(color);
@@ -131,12 +139,12 @@ function GameCanvas({selectedPainting, timer, score}) {
   };
 
   const handleGetDeltaE = () => {
-    console.log("Ref Canvas Data:")
-    console.log(refPixelValues);
+    // console.log("Ref Canvas Data:")
+    // console.log(refPixelValues);
 
     const playerCanvasData = getPlayerCanvasData(ctx, selectedPainting);
-    console.log("Player Canvas Data:");
-    console.log(playerCanvasData);
+    // console.log("Player Canvas Data:");
+    // console.log(playerCanvasData);
 
     const deltaEValues = [];
 
@@ -156,8 +164,8 @@ function GameCanvas({selectedPainting, timer, score}) {
     console.log("Is Canvas Blank?");
     console.log(isCanvasBlank);
 
-    console.log("Delta E Values:");
-    console.log(deltaEValues);
+    //console.log("Delta E Values:");
+    //console.log(deltaEValues);
 
     let totalDeltaE = 0;
 
@@ -165,12 +173,13 @@ function GameCanvas({selectedPainting, timer, score}) {
       totalDeltaE += deltaEValues[i];
     }
 
-    const avgDeltaE = totalDeltaE / deltaEValues.length;
+    const avgDeltaE = (totalDeltaE / deltaEValues.length).toFixed(1);
 
-    console.log(avgDeltaE);
+    //sending final score
+    handleScoreSubmit(100 - avgDeltaE);
 
+    // final score
     console.log(100 - avgDeltaE);
-
   }
 
   return (
@@ -268,11 +277,11 @@ function GameCanvas({selectedPainting, timer, score}) {
       {/* <button id="clear-button" onClick={clearCanvas}>
         Clear Canvas
       </button> */}
-      <div  className="flex gap-3 items-center">
+      {/* <div  className="flex gap-3 items-center">
         <button className="p-3" onClick={handleGetCanvasData}>Get Canvas Data</button>
         <button className="p-3" onClick={handleGetReferenceData}>Get Ref Data</button>
         <button className="p-3" onClick={handleGetDeltaE}>Get Delta E</button>
-      </div>
+      </div> */}
     </div>
   );
 };

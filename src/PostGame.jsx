@@ -58,7 +58,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
                 {socket.id === user.id && <span> (You)</span>}
               </p>
               <img className='mx-auto' width={150} src={user.playerIcon}/>
-              <p>{user.score}</p>
+              <p>{user.score}%</p>
             </li>
           ))}
         </ul>

@@ -1,4 +1,7 @@
 export const getPlayerCanvasData = (ctx, selectedPainting) => {
+  if (ctx == null) {
+    return;
+  }
     const imageData = ctx.getImageData(0, 0, selectedPainting.dimensions.width, selectedPainting.dimensions.height);
     const data = imageData.data;
     const rgbValues = [];
@@ -14,4 +17,4 @@ export const getPlayerCanvasData = (ctx, selectedPainting) => {
     }
 
     return rgbValues;
-  };
+};
