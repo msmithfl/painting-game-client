@@ -16,18 +16,48 @@ function GameCanvas({selectedPainting, timer, score}) {
   const [showImage, setShowImage] = useState(true);
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
   const [countdown5, setCountdown5] = useState(5);
-  const [refPixelData, setRefPixelData] = useState();
+  //const [refPixelData, setRefPixelData] = useState();
   const [finalScore, setFinalScore] = useState(0);
+  const [refPixelValues, setRefPixelValues] = useState([]);
 
   // setting up the canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d", { willReadFrequently: true });
     setCtx(context);
-    
-    // getting pixel data from ref image
-    handleGetReferenceData();
+  
+    //getting ref pixel data
+    const img = new Image();
+    img.onload = () => {
+      context.drawImage(img, 0, 0, selectedPainting.dimensions.width, selectedPainting.dimensions.height);
+      
+      setTimeout(() => {
+        const referenceImageData = context.getImageData(
+          0,
+          0,
+          selectedPainting.dimensions.width,
+          selectedPainting.dimensions.height
+        );
+  
+        const referenceData = referenceImageData.data;
+  
+        const rgbValues1 = [];
+        for (let i = 0; i < referenceData.length; i += 4) {
+          const red = referenceData[i];
+          const green = referenceData[i + 1];
+          const blue = referenceData[i + 2];
+          rgbValues1.push([red, green, blue]);
+        }
+        setRefPixelValues(rgbValues1);
+  
+        // Clearing the canvas
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }, 1000);
+    };
+    img.src = selectedPainting.path;
   }, []);
+  
+  
 
   const setColor = (color, button) => {
     setCurrentColor(color);
@@ -91,7 +121,9 @@ function GameCanvas({selectedPainting, timer, score}) {
 
   const handleGetReferenceData = async () => {
     try {
-      const refData = await getReferenceCanvasData(selectedPainting);
+      const refData = getReferenceCanvasData(selectedPainting);
+      console.log("Reference Data");
+      console.log(refData);
       setRefPixelData(refData);
     } catch (error) {
       console.error('Error fetching reference data:', error);
@@ -99,27 +131,27 @@ function GameCanvas({selectedPainting, timer, score}) {
   };
 
   const handleGetDeltaE = () => {
-    //console.log("Ref Canvas Data:")
-    //console.log(refPixelData);
+    console.log("Ref Canvas Data:")
+    console.log(refPixelValues);
 
     const playerCanvasData = getPlayerCanvasData(ctx, selectedPainting);
-    //console.log("Player Canvas Data:");
-    //console.log(playerCanvasData);
+    console.log("Player Canvas Data:");
+    console.log(playerCanvasData);
 
     const deltaEValues = [];
 
     let isCanvasBlank = true;
     const blankArray = [0, 0, 0];
 
-    for (let i = 0; i < refPixelData.length; i++) {
+    for (let i = 0; i < refPixelValues.length; i++) {
       // checks if canvas is blank/all white
       if (playerCanvasData[i].toString() !== blankArray.toString()) {
         isCanvasBlank = false;
       }
-      deltaE(refPixelData[i], playerCanvasData[i]); 
+      deltaE(refPixelValues[i], playerCanvasData[i]); 
 
       // Push the RGB values into the array
-      deltaEValues.push(deltaE(refPixelData[i], playerCanvasData[i]));
+      deltaEValues.push(deltaE(refPixelValues[i], playerCanvasData[i]));
     }
     console.log("Is Canvas Blank?");
     console.log(isCanvasBlank);
@@ -236,11 +268,11 @@ function GameCanvas({selectedPainting, timer, score}) {
       {/* <button id="clear-button" onClick={clearCanvas}>
         Clear Canvas
       </button> */}
-      {/* <div  className="flex gap-3 items-center">
+      <div  className="flex gap-3 items-center">
         <button className="p-3" onClick={handleGetCanvasData}>Get Canvas Data</button>
-        <button className="p-3" onClick={() => console.log(refPixelData)}>Get Ref Data</button>
+        <button className="p-3" onClick={handleGetReferenceData}>Get Ref Data</button>
         <button className="p-3" onClick={handleGetDeltaE}>Get Delta E</button>
-      </div> */}
+      </div>
     </div>
   );
 };
