@@ -41,7 +41,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
   }, [handleScoreSubmit, timer]);
 
   return (
-    <div className='flex flex-col' style={{ touchAction: 'none' }}>
+    <div className='flex flex-col justify-center items-center h-screen' style={{ touchAction: 'none' }}>
       {/* <div className='m-1'>
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div> */}

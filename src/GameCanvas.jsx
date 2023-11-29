@@ -184,7 +184,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   }
 
   return (
-    <div className="flex flex-col items-center space-y-2 mt-5">
+    <div className="flex flex-col items-center space-y-2">
       <div className="flex items-center gap-6">
         <div className="flex flex-col items-center">
           <div className="flex gap-2 items-center">
