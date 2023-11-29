@@ -77,9 +77,9 @@ const MainRoom = () => {
 
   return (
     <div className='min-h-screen flex flex-col'>
-      <div className='m-1'>
+      {/* <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
-      </div>
+      </div> */}
       <div>
         {gameState === 'lobby' && 
           <div className="flex flex-col items-center" >

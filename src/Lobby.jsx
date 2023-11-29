@@ -11,7 +11,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
         <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-5'>
           {userList.map((user) => (
             <li className='text-center mt-5 sm:mt-0' key={user.id}>
-              <p className={`${socket.id === user.id ? 'font-bold' : ''}`}>
+              <p className={`pb-2 ${socket.id === user.id ? 'font-bold' : ''}`}>
                 {user.userName}
                 {socket.id === user.id && <span> (You)</span>}
               </p>
@@ -21,8 +21,8 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
                     handlePlayerReady();
                   }
                 }}
-                className={`mx-auto ${socket.id === user.id ? 'cursor-pointer' : ''}`} width={150} src={user.playerIcon}/>
-              {user.isReady ? <p>Ready</p> : <p>Not Ready</p>}
+                className={`mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
+              {user.isReady ? <p className='pt-2'>Ready</p> : <p className='pt-2'>Not Ready</p>}
             </li>
           ))}
         </ul>

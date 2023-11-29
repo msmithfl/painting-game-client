@@ -10,7 +10,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
   const [currentColor, setCurrentColor] = useState(`rgba(${selectedPainting.colors.primaryColor}, 0.5)`);
-  const [currentBrushSize, setCurrentBrushSize] = useState("20");
+  const [currentBrushSize, setCurrentBrushSize] = useState("30");
   const [selectedColorButton, setSelectedColorButton] = useState(selectedPainting.colors.primaryColor);
   const [selectedBrushButton, setSelectedBrushButton] = useState("button3");
   const [showImage, setShowImage] = useState(true);
@@ -184,7 +184,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   }
 
   return (
-    <div className="flex flex-col items-center space-y-2">
+    <div className="flex flex-col items-center space-y-2 mt-5">
       <div className="flex items-center gap-6">
         <div className="flex gap-2 items-center">
           <FontAwesomeIcon icon={faClock}/>
@@ -243,19 +243,19 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
               <button
                 className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button1' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
                 onClick={() => {
-                  setBrushSize("2", "button1")
+                  setBrushSize("5", "button1")
                 }}
               >SM</button>
               <button
                 className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button2' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
                 onClick={() => {
-                  setBrushSize("10", "button2")
+                  setBrushSize("20", "button2")
                 }}
               >MD</button>
               <button
                 className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button3' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
                 onClick={() => {
-                  setBrushSize("20", "button3")
+                  setBrushSize("30", "button3")
                 }}
               >LG</button>
             </div>

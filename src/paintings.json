@@ -22,7 +22,8 @@
         "colorThree": "132, 38, 8",
         "colorFour": "118, 120, 119",
         "colorFive": "255, 255, 255",
-        "colorSix": "1, 137, 123"
+        "colorSix": "1, 137, 123",
+        "colorSeven": "0, 0, 0"
       },
       "dimensions": {
         "width": "300",

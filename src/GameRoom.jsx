@@ -42,9 +42,9 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
 
   return (
     <div className='flex flex-col' style={{ touchAction: 'none' }}>
-      <div className='m-1'>
+      {/* <div className='m-1'>
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
-      </div>
+      </div> */}
       <div className='flex flex-col items-center'>
         <GameCanvas selectedPainting={selectedPainting} timer={timer} score={score} gameOver={gameOver} handleScoreSubmit={handleScoreSubmit} />
       </div>
