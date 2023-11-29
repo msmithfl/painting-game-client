@@ -15,7 +15,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   const [selectedBrushButton, setSelectedBrushButton] = useState("button3");
   const [showImage, setShowImage] = useState(true);
   const [initialImageDisplay, setInitialImageDisplay] = useState(true);
-  const [countdown5, setCountdown5] = useState(5);
+  const [countdown5, setCountdown5] = useState(10);
   const [refPixelValues, setRefPixelValues] = useState([]);
 
   // setting up the canvas
@@ -186,17 +186,31 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   return (
     <div className="flex flex-col items-center space-y-2 mt-5">
       <div className="flex items-center gap-6">
-        <div className="flex gap-2 items-center">
-          <FontAwesomeIcon icon={faClock}/>
-          <h2 className='text-3xl'>{timer > 60 ? 60 : timer}</h2>
+        <div className="flex flex-col items-center">
+          <div className="flex gap-2 items-center">
+            <FontAwesomeIcon icon={faClock}/>
+            <h2 className='text-3xl'>{timer > 60 ? 60 : timer}</h2>
+          </div>
+          {initialImageDisplay && (
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+              <p>Timer</p>
+            </div>
+          )}
         </div>
-        <button
-          className={`rounded-md px-3 py-1 border-4 ${showImage ? "border-white" : "border-transparent"}`}
-          onClick={toggleImage}
-          disabled={initialImageDisplay}
-        >
-          <FontAwesomeIcon icon={faImage}/>
-        </button>
+        <div className="flex flex-col items-center">
+          <button
+            className={`rounded-md px-3 py-1 border-4 ${showImage ? "border-white" : "border-transparent"}`}
+            onClick={toggleImage}
+            disabled={initialImageDisplay}
+          >
+            <FontAwesomeIcon icon={faImage}/>
+          </button>
+          {initialImageDisplay && (
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+              <p>Show Image</p>
+            </div>
+          )}
+        </div>
       </div>
       <div style={{ position: 'relative' }}>
         {showImage && (
@@ -239,6 +253,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
          )}
       </div>
       <div className="flex gap-3 items-center">
+        <div className="flex flex-col items-center">
             <div>
               <button
                 className={`rounded-md py-2 w-9 border-4 transform transition-transform font-bold ${selectedBrushButton === 'button1' ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
@@ -259,17 +274,30 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
                 }}
               >LG</button>
             </div>
-        <div>
-          {Object.values(selectedPainting.colors).map((color) => (
-            <button
-              key={color}
-              className={`h-12 w-7 rounded-md border-4 transform transition-transform ${selectedColorButton === color ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
-              style={{ backgroundColor: `rgb(${color})` }}
-              onClick={() => {
-                setColor(`rgba(${color}, 0.5`, color)
-              }}
-            ></button>
-          ))}
+            {initialImageDisplay && (
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+              <p>Brushes</p>
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col items-center">
+          <div>
+            {Object.values(selectedPainting.colors).map((color) => (
+              <button
+                key={color}
+                className={`h-12 w-7 rounded-md border-4 transform transition-transform ${selectedColorButton === color ? 'border-white translate-y-[-3px]' : 'border-transparent'}`}
+                style={{ backgroundColor: `rgb(${color})` }}
+                onClick={() => {
+                  setColor(`rgba(${color}, 0.5`, color)
+                }}
+              ></button>
+            ))}
+          </div>
+          {initialImageDisplay && (
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+              <p>Palette</p>
+            </div>
+          )}
         </div>
       </div>
       {/* <button id="clear-button" onClick={clearCanvas}>

@@ -38,7 +38,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
 
   return (
     <div className='flex flex-col items-center'>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center pt-5'>
         <img
           src={selectedPainting.path}
           style={{ width: '200px' }}
@@ -53,12 +53,12 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
         <ul className='sm:grid sm:grid-cols-2 gap-7 mt-5'>
           {finalUsers.map((user) => (
             <li className='text-center mt-5 sm:mt-0' key={user.id}>
-              <p className={`${socket.id === user.id ? 'font-bold' : ''}`}>
+              <p className={`pb-2 ${socket.id === user.id ? 'font-bold' : ''}`}>
                 {user.userName}
                 {socket.id === user.id && <span> (You)</span>}
               </p>
               <img className={`mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
-              <p>{user.score}%</p>
+              <p className='pt-2'>{user.score}%</p>
             </li>
           ))}
         </ul>
