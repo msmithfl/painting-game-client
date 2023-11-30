@@ -2,7 +2,6 @@ import React from 'react';
 import QRCode from 'react-qr-code';
 import Footer from './Footer';
 
-
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
   const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
 
@@ -33,8 +32,8 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
           ))}
         </ul>
       </div>
-        <button className='mt-4 p-4 rounded-md font-bold' onClick={handlePlayerReady}>{isPlayerReady ? "Waiting..." : "Ready?"}</button>
-        <Footer />
+      {/* <button className='mt-4 p-4 rounded-md font-bold' onClick={handlePlayerReady}>{isPlayerReady ? "Waiting..." : "Ready?"}</button> */}
+      <Footer />
     </div>
   );
 };

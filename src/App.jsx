@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-import QRCode from 'react-qr-code';
 
 const App = () => {
   const navigate = useNavigate();
@@ -34,7 +33,6 @@ const App = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
       <div className="flex flex-col items-center">
-        {/* <QRCode className="w-1/3 h-1/3 pb-5"  value='https://painting-game-client.onrender.com/' /> */}
         <h1 className='text-5xl text-center'>PAMM Painting Game</h1>
       </div>
       <div className='flex flex-col mt-8 space-y-3 text-xl'>
