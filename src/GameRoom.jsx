@@ -5,12 +5,12 @@ import paintings from "./paintings.json";
 function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, socket }) {
   const [score, setScore] = useState(Math.floor(Math.random() * 100) + 1);
   const [timer, setTimer] = useState(70); // Set the initial countdown time in seconds
-  const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
+  const [selectedPainting, _] = useState(Object.values(paintings)[1]); // Randomly selected painting
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    console.log(randomValue);
-    socket.emit('setUsedPaintings', roomName, randomValue);
+    //console.log(randomValue);
+    //socket.emit('setUsedPaintings', roomName, randomValue);
   }, [])
 
   useEffect(() => {
@@ -40,8 +40,10 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
     };
   }, [handleScoreSubmit, timer]);
 
+  //place in main div to center canvas, 'flex flex-col justify-center items-center h-screen'
+
   return (
-    <div className='flex flex-col justify-center items-center h-screen' style={{ touchAction: 'none' }}>
+    <div className='flex flex-col justify-center items-center mt-6' style={{ touchAction: 'none' }}>
       {/* <div className='m-1'>
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div> */}

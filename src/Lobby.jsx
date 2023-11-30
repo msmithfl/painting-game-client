@@ -10,7 +10,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
       <div className='flex flex-col items-center'>
         <h2 className='text-xl mt-5'>Lobby: {roomName}</h2>
         <QRCode className='pt-5' value={qrCodeURL} />
-        <h1 className='text-2xl font-bold pt-5'>Tap Your <span className='text-pink-600'>Icon</span> When Ready!</h1>
+        <h1 className='text-2xl font-bold pt-5'>Tap <span className='text-pink-600'>Your Icon</span> When Ready!</h1>
       </div>
       <div className='flex'>
         <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-2'>
