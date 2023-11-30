@@ -43,7 +43,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
   //place in main div to center canvas, 'flex flex-col justify-center items-center h-screen'
 
   return (
-    <div className='overscroll-none flex flex-col justify-center items-center mt-6' style={{ touchAction: 'none' }}>
+    <div className='flex flex-col justify-center items-center mt-6' style={{ touchAction: 'none' }}>
       {/* <div className='m-1'>
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div> */}

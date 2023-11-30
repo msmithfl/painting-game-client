@@ -75,7 +75,7 @@ const MainRoom = () => {
   //was in main div, min-h-screen 
 
   return (
-    <div className='flex flex-col'>
+    <div className={`flex flex-col ${gameState === 'gameroom' ? 'overscroll-none' : ''}`}>
       {/* <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
       </div> */}
