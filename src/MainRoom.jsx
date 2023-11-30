@@ -83,7 +83,6 @@ const MainRoom = () => {
       <div>
         {gameState === 'lobby' && 
           <div className="flex flex-col items-center" >
-            <QRCode className='pt-5' value={qrCodeURL} />
             <Lobby
               roomName={roomName}
               userList={userList}
@@ -113,7 +112,6 @@ const MainRoom = () => {
           />
         }
       </div>
-      <Footer />
     </div>
   );
 };

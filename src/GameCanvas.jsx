@@ -206,7 +206,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
             <FontAwesomeIcon icon={faImage}/>
           </button>
           {initialImageDisplay && (
-            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+            <div className="absolute mt-10 ml-3 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
               <p>Show Image</p>
             </div>
           )}

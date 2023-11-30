@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import paintings from "./paintings.json";
+import Footer from './Footer';
 
 function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGetRandNum, randomValue }) {
   const [finalUsers, setFinalUsers] = useState([]);
@@ -63,6 +64,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
           ))}
         </ul>
       </div>
+      <Footer />
     </div>
   );
 };

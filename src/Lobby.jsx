@@ -1,16 +1,22 @@
 import React from 'react';
+import QRCode from 'react-qr-code';
+import Footer from './Footer';
+
 
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
+  const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
 
   return (
     <div className='flex flex-col items-center'>
-      <div>
+      <div className='flex flex-col items-center'>
         <h2 className='text-xl mt-5'>Lobby: {roomName}</h2>
+        <QRCode className='pt-5' value={qrCodeURL} />
+        <h1 className='text-2xl font-bold pt-5'>Tap Your Icon When Ready!</h1>
       </div>
       <div className='flex'>
-        <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-5'>
+        <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-2'>
           {userList.map((user) => (
-            <li className='text-center mt-5 sm:mt-0' key={user.id}>
+            <li className='select-none text-center mt-5 sm:mt-0' key={user.id}>
               <p className={`pb-2 ${socket.id === user.id ? 'font-bold' : ''}`}>
                 {user.userName}
                 {socket.id === user.id && <span> (You)</span>}
@@ -21,13 +27,14 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
                     handlePlayerReady();
                   }
                 }}
-                className={`mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
+                className={`select-none mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
               {user.isReady ? <p className='pt-2'>Ready</p> : <p className='pt-2'>Not Ready</p>}
             </li>
           ))}
         </ul>
       </div>
         <button className='mt-4 p-4 rounded-md font-bold' onClick={handlePlayerReady}>{isPlayerReady ? "Waiting..." : "Ready?"}</button>
+        <Footer />
     </div>
   );
 };
