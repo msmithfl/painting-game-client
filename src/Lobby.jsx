@@ -26,8 +26,9 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
                     handlePlayerReady();
                   }
                 }}
-                className={`select-none mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
-              {user.isReady ? <p className='pt-2'>Ready</p> : <p className='pt-2'>Not Ready</p>}
+                className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'cursor-pointer bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}
+              />
+              <p className={`pt-2 ${socket.id === user.id ? 'font-bold' : ''}`}>{user.isReady ? "Ready" : "Not Ready"}</p>
             </li>
           ))}
         </ul>

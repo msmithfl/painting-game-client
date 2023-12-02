@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faClock } from '@fortawesome/free-solid-svg-icons';
-import { deltaE } from "./hooks/comparePixels";
 import { getReferenceCanvasData } from "./hooks/getReferenceCanvasData";
 import { getPlayerCanvasData } from "./hooks/getPlayerCanvasData";
+import { deltaE } from "./hooks/comparePixels";
 
 function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
   const canvasRef = useRef(null);

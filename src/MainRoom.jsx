@@ -8,7 +8,7 @@ import PostGame from './PostGame.jsx';
 
 const MainRoom = () => {
   const { roomName } = useParams();
-  const location = useLocation(); 
+  const location = useLocation();
   const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
   const [userList, setUserList] = useState([]);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -72,10 +72,11 @@ const MainRoom = () => {
       setRandomValue(randomValue);
     })
   }
+  
   //was in main div, min-h-screen 
 
   return (
-    <div className={`flex flex-col ${gameState === 'gameroom' ? 'overscroll-none' : ''}`}>
+    <div className='flex flex-col'>
       {/* <div className='m-1'>
         <h3 className='font-bold text-left'>Playing as: {localStorage.getItem('username')}</h3>
       </div> */}

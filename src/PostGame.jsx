@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGetRandNum, randomValue }) {
   const [finalUsers, setFinalUsers] = useState([]);
-  const [countdown, setCountdown] = useState(20); // Initial countdown time in seconds
+  const [countdown, setCountdown] = useState(20); // Countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]);
 
   const handleGetUsers = () => {
@@ -45,10 +45,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
           style={{ width: '200px' }}
         />
         <p className="text-xs">{selectedPainting.artist}, <i>{selectedPainting.title}</i> - {selectedPainting.year}</p>
-      </div>
-      <div>
-        <h2 className='text-xl mt-5'>Postgame: {roomName}</h2>
-        <p className='text-center'>Countdown: {countdown} seconds</p>
+        <p className='text-xl text-center mt-3'>Countdown: {countdown} seconds</p>
       </div>
       <div className='flex'>
         <ul className='sm:grid sm:grid-cols-2 gap-7 mt-5'>
@@ -58,7 +55,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
                 {user.userName}
                 {socket.id === user.id && <span> (You)</span>}
               </p>
-              <img className={`mx-auto ${socket.id === user.id ? 'cursor-pointer bg-pink-600 rounded-xl' : ''}`} width={150} src={user.playerIcon}/>
+              <img className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}/>
               <p className='pt-2'>{user.score}%</p>
             </li>
           ))}
