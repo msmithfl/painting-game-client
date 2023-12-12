@@ -59,7 +59,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
     const timer = setTimeout(() => {
       console.log("Game Over");
       handleGetDeltaE();
-      //handleCanvasDataCollection();
+      handleCanvasDataCollection();
     }, 200);
   
     return () => clearTimeout(timer);
