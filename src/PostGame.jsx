@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGetRandNum, randomValue }) {
   const [finalUsers, setFinalUsers] = useState([]);
-  const [countdown, setCountdown] = useState(30); // Countdown time in seconds
+  const [countdown, setCountdown] = useState(20); // Countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]);
 
   const handleGetUsers = () => {
