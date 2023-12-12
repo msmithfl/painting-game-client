@@ -22,10 +22,12 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
     const timer = setInterval(() => {
       if (countdown > 0) {
         setCountdown(countdown - 1);
+      } else if (countdown == 1) {
+        handlePlayerReady();
       } else {
         // When the countdown reaches 0, send to lobby and set isPlayerReady to false, generate new number for next painting
         clearInterval(timer); // Stop the countdown timer
-        handlePlayerReady();
+        //handlePlayerReady();
         setGameState('lobby');
         handleGetRandNum(socket);
       }
