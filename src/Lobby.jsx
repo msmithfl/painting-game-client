@@ -4,15 +4,34 @@ import Footer from './Footer';
 
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
   const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
+  const [copySuccess, setCopySuccess] = React.useState(false);
+
+  const copyURLToClipboard = () => {
+    navigator.clipboard.writeText(qrCodeURL)
+      .then(() => {
+        setCopySuccess(true); // Set state to true on successful copy
+        setTimeout(() => {
+          setCopySuccess(false); // Reset success state after a short delay
+        }, 2000);
+      })
+      .catch(err => {
+        console.error('Failed to copy URL to clipboard:', err);
+      });
+  };
 
   const filteredUserList = userList.filter(user => user.id !== socket.id);
   const currentUser = userList.find(user => user.id === socket.id);
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center relative'>
       <div className='flex flex-col items-center'>
         <h2 className='text-xl mt-5'>Lobby: {roomName}</h2>
-        <QRCode className='pt-5' value={qrCodeURL} />
+        <QRCode className='pt-5' value={qrCodeURL} onClick={copyURLToClipboard} />
+        {copySuccess && (
+          <p className="text-green-500 absolute top-5 z-10 bg-white py-2 px-4 rounded-md">
+            URL copied!
+          </p>
+        )}
         <h1 className='text-2xl font-bold pt-5'>Tap <span className='text-pink-600'>Your Icon</span> When Ready!</h1>
       </div>
       <div className='flex'>
