@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import paintings from "./paintings.json";
 import Footer from './Footer';
 
@@ -55,8 +55,12 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
                 {user.userName}
                 {socket.id === user.id && <span> (You)</span>}
               </p>
-              <img className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}/>
+              <div className='flex'>
+                <img className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}/>
+                {/* <canvas className='bg-white' width={100}></canvas> */}
+              </div>
               <p className='pt-2'>{user.score}%</p>
+              {/* <p className='pt-2'>{user.canvasData[0]}</p> */}
             </li>
           ))}
         </ul>

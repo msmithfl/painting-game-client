@@ -5,7 +5,7 @@ import { getReferenceCanvasData } from "./hooks/getReferenceCanvasData";
 import { getPlayerCanvasData } from "./hooks/getPlayerCanvasData";
 import { deltaE } from "./hooks/comparePixels";
 
-function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
+function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handleCanvasDataSubmit}) {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [drawing, setDrawing] = useState(false);
@@ -59,6 +59,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
     const timer = setTimeout(() => {
       console.log("Game Over");
       handleGetDeltaE();
+      handleCanvasDataCollection();
     }, 200);
   
     return () => clearTimeout(timer);
@@ -134,6 +135,13 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit}) {
       console.error('Error fetching reference data:', error);
     }
   };
+
+  const handleCanvasDataCollection = () => {
+    const imageData = ctx.getImageData(0, 0, selectedPainting.dimensions.width, selectedPainting.dimensions.height);
+    const data = imageData.data;
+    console.log(data);
+    handleCanvasDataSubmit(data);
+  }
 
   const handleGetDeltaE = () => {
     // console.log("Ref Canvas Data:")

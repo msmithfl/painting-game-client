@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import GameCanvas from './GameCanvas';
 import paintings from "./paintings.json";
 
-function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, socket }) {
-  const [timer, setTimer] = useState(70); // Set the initial countdown time in seconds
+function GameRoom({ roomName, handleScoreSubmit, handleCanvasDataSubmit, setGameState, randomValue, socket }) {
+  const [timer, setTimer] = useState(20); // Set the initial countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
   const [gameOver, setGameOver] = useState(false);
 
@@ -47,7 +47,7 @@ function GameRoom({ roomName, handleScoreSubmit, setGameState, randomValue, sock
         <h2 className='font-bold text-left'>Gameroom: {roomName}</h2>
       </div> */}
       <div className='flex flex-col items-center'>
-        <GameCanvas selectedPainting={selectedPainting} timer={timer} gameOver={gameOver} handleScoreSubmit={handleScoreSubmit} />
+        <GameCanvas selectedPainting={selectedPainting} timer={timer} gameOver={gameOver} handleScoreSubmit={handleScoreSubmit} handleCanvasDataSubmit={handleCanvasDataSubmit} />
       </div>
     </div>
   );

@@ -5,6 +5,9 @@ import Footer from './Footer';
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
   const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
 
+  const filteredUserList = userList.filter(user => user.id !== socket.id);
+  const currentUser = userList.find(user => user.id === socket.id);
+
   return (
     <div className='flex flex-col items-center'>
       <div className='flex flex-col items-center'>
@@ -14,21 +17,31 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
       </div>
       <div className='flex'>
         <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-2'>
-          {userList.map((user) => (
-            <li className='select-none text-center mt-5 sm:mt-0' key={user.id}>
-              <p className={`pb-2 ${socket.id === user.id ? 'font-bold' : ''}`}>
-                {user.userName}
-                {socket.id === user.id && <span> (You)</span>}
-              </p>
+          {currentUser && (
+              <li className='select-none text-center mt-5 sm:mt-0' key={currentUser.id}>
+              <p className='pb-2 font-bold'>{currentUser.userName} (You)</p>
               <img
                 onClick={() => {
-                  if (socket.id === user.id) {
+                  if (socket.id === currentUser.id) {
                     handlePlayerReady();
                   }
                 }}
-                className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'cursor-pointer bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}
+                className='select-none mx-auto border-black border-4 rounded-xl cursor-pointer bg-pink-600'
+                width={150}
+                src={currentUser.playerIcon}
               />
-              <p className={`pt-2 ${socket.id === user.id ? 'font-bold' : ''}`}>{user.isReady ? "Ready" : "Not Ready"}</p>
+              <p className='pt-2 font-bold'>{currentUser.isReady ? "Ready" : "Not Ready"}</p>
+            </li>
+          )}
+          {filteredUserList.map((user) => (
+            <li className='select-none text-center mt-5 sm:mt-0' key={user.id}>
+              <p className='pb-2'>{user.userName}</p>
+              <img
+                className='select-none mx-auto border-black border-4 rounded-xl bg-stone-700'
+                width={150}
+                src={user.playerIcon}
+              />
+              <p className='pt-2'>{user.isReady ? "Ready" : "Not Ready"}</p>
             </li>
           ))}
         </ul>
