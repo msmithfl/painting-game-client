@@ -3,7 +3,7 @@ import GameCanvas from './GameCanvas';
 import paintings from "./paintings.json";
 
 function GameRoom({ roomName, handleScoreSubmit, handleCanvasDataSubmit, setGameState, randomValue, socket }) {
-  const [timer, setTimer] = useState(70); // Set the initial countdown time in seconds
+  const [timer, setTimer] = useState(20); // Set the initial countdown time in seconds
   const [selectedPainting, _] = useState(Object.values(paintings)[randomValue]); // Randomly selected painting
   const [gameOver, setGameOver] = useState(false);
 

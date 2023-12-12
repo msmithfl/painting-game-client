@@ -18,15 +18,16 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
         console.error('Failed to copy URL to clipboard:', err);
       });
   };
-
-  const filteredUserList = userList.filter(user => user.id !== socket.id);
+  // getting user
   const currentUser = userList.find(user => user.id === socket.id);
+  // getting all other users
+  const filteredUserList = userList.filter(user => user.id !== socket.id);
 
   return (
     <div className='flex flex-col items-center relative'>
       <div className='flex flex-col items-center'>
         <h2 className='text-xl mt-5'>Lobby: {roomName}</h2>
-        <QRCode className='pt-5' value={qrCodeURL} onClick={copyURLToClipboard} />
+        <QRCode className='pt-5 cursor-pointer' value={qrCodeURL} onClick={copyURLToClipboard} />
         {copySuccess && (
           <p className="text-green-500 absolute top-5 z-10 bg-white py-2 px-4 rounded-md">
             URL copied!
@@ -40,11 +41,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
               <li className='select-none text-center mt-5 sm:mt-0' key={currentUser.id}>
               <p className='pb-2 font-bold'>{currentUser.userName} (You)</p>
               <img
-                onClick={() => {
-                  if (socket.id === currentUser.id) {
-                    handlePlayerReady();
-                  }
-                }}
+                onClick={handlePlayerReady}
                 className='select-none mx-auto border-black border-4 rounded-xl cursor-pointer bg-pink-600'
                 width={150}
                 src={currentUser.playerIcon}
