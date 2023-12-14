@@ -62,7 +62,7 @@ function PostGame({ socket, roomName, setGameState, handlePlayerReady, handleGet
                 {index == 0 && <img className='absolute z-10 ml-5' src='/imgs/medals/gold.png' width={75}/>}
                 {index == 1 && <img className='absolute z-10 ml-5' src='/imgs/medals/silver.png' width={75}/>}
                 {index == 2 && <img className='absolute z-10 ml-5' src='/imgs/medals/bronze.png' width={75}/>}
-                <img className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'bg-pink-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}/>
+                <img className={`select-none mx-auto border-black border-4 rounded-xl ${socket.id === user.id ? 'bg-gradient-to-br from-pink-500 to-purple-600' : 'bg-stone-700'}`} width={150} src={user.playerIcon}/>
                 {/* <canvas className='bg-white' width={100}></canvas> */}
               </div>
               <p className='pt-2'>{user.score}%</p>

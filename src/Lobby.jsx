@@ -33,7 +33,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
             URL copied!
           </p>
         )}
-        <h1 className='text-2xl font-bold pt-5'>Tap <span className='text-pink-600'>Your Icon</span> When Ready!</h1>
+        <h1 className='text-2xl font-bold pt-5'>Tap <span className='gradient-text'>Your Icon</span> When Ready!</h1>
       </div>
       <div className='flex'>
         <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-2'>
@@ -42,7 +42,7 @@ function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
               <p className='pb-2 font-bold'>{currentUser.userName} (You)</p>
               <img
                 onClick={handlePlayerReady}
-                className='select-none mx-auto border-black border-4 rounded-xl cursor-pointer bg-pink-600'
+                className='select-none mx-auto border-black border-4 rounded-xl cursor-pointer bg-gradient-to-br from-pink-500 to-purple-600'
                 width={150}
                 src={currentUser.playerIcon}
               />

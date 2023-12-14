@@ -104,7 +104,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
 
   // initial 5-second timer
   useEffect(() => {
-    if (countdown5 > 0) {
+    if (countdown5 >= 0) {
       const timer5 = setTimeout(() => {
         setCountdown5(countdown5 - 1);
       }, 1000);
@@ -113,7 +113,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
     }
 
     // when the 5-second countdown finishes
-    if (countdown5 === 0) {
+    if (countdown5 === -1) {
       toggleImage();
       setInitialImageDisplay(false);
     }
@@ -252,11 +252,11 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
             draw(e);
           }}
         />
-        {countdown5 > 0 && (
+        {countdown5 >= 0 && (
           <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
         >
-          <span className="text-5xl font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{countdown5}</span>
+          <span className="text-5xl font-bold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">{countdown5 === 0 ? 'GO!' : countdown5}</span>
         </div>
          )}
       </div>

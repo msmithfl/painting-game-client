@@ -45,3 +45,11 @@ button {
     background-color: #f9f9f9;
   }
 } */
+
+/* Custom CSS */
+.gradient-text {
+  background-image: linear-gradient(to right, #ec4899, #9333ea);
+  /* Use your desired gradient colors and direction */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
