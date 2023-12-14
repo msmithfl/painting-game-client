@@ -9,7 +9,7 @@
         "width": "360",
         "height": "300"
       },
-      "path": "/imgs/paintings/alba-herrera-reduced.png",
+      "path": "/imgs/paintings/alba-herrera.jpg",
       "title": "Alba",
       "artist": "Carmen Herrera",
       "year": "2014"
@@ -74,5 +74,26 @@
       "title": "Common History: Dance",
       "artist": "Michael Craig-Martin",
       "year": "1999"
+    },
+    "vanishing-points": {
+      "key": "vanishing-points",
+      "colors": {
+        "primaryColor": "111, 53, 103",
+        "colorTwo": "121, 132, 134",
+        "colorThree": "41, 41, 39",
+        "colorFour": "226, 168, 0",
+        "colorFive": "167, 8, 4",
+        "colorSix": "67, 140, 58",
+        "colorSeven": "16, 80, 141",
+        "colorEight": "213, 217, 216"
+      },
+      "dimensions": {
+        "width": "331",
+        "height": "360"
+      },
+      "path": "/imgs/paintings/vanishing-points.jpg",
+      "title": "Vanishing Points (Yellow)",
+      "artist": "José Rosabal",
+      "year": "2011-12"
     }
   }
