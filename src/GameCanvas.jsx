@@ -200,7 +200,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
             <h2 className='text-3xl'>{timer > 60 ? 60 : timer}</h2>
           </div>
           {initialImageDisplay && (
-            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-white text-black">
               <p>Timer</p>
             </div>
           )}
@@ -214,7 +214,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
             <FontAwesomeIcon icon={faImage}/>
           </button>
           {initialImageDisplay && (
-            <div className="absolute mt-10 ml-3 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+            <div className="absolute mt-10 ml-3 p-1 border-2 border-black rounded-md z-10 bg-white text-black">
               <p>Show Image</p>
             </div>
           )}
@@ -283,7 +283,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
               >LG</button>
             </div>
             {initialImageDisplay && (
-            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-white text-black">
               <p>Brushes</p>
             </div>
           )}
@@ -302,7 +302,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
             ))}
           </div>
           {initialImageDisplay && (
-            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-amber-100 text-black">
+            <div className="absolute mt-10 p-1 border-2 border-black rounded-md z-10 bg-white text-black">
               <p>Palette</p>
             </div>
           )}

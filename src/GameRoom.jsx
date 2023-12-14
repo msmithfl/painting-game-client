@@ -8,7 +8,7 @@ function GameRoom({ roomName, handleScoreSubmit, handleCanvasDataSubmit, setGame
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    console.log(randomValue);
+    //console.log(randomValue);
     socket.emit('setUsedPaintings', roomName, randomValue);
   }, [])
 
