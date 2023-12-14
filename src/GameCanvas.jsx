@@ -57,7 +57,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
   
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log("Game Over");
+      //console.log("Game Over");
       handleGetDeltaE();
       //handleCanvasDataCollection();
     }, 200);
@@ -166,8 +166,8 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
       // Push the RGB values into the array
       deltaEValues.push(deltaE(refPixelValues[i], playerCanvasData[i]));
     }
-    console.log("Is Canvas Blank?");
-    console.log(isCanvasBlank);
+    //console.log("Is Canvas Blank?");
+    //console.log(isCanvasBlank);
 
     //console.log("Delta E Values:");
     //console.log(deltaEValues);
@@ -188,7 +188,7 @@ function GameCanvas({selectedPainting, timer, gameOver, handleScoreSubmit, handl
     handleScoreSubmit(100 - avgDeltaE);
 
     // final score
-    console.log(100 - avgDeltaE);
+    //console.log(100 - avgDeltaE);
   }
 
   return (
