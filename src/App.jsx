@@ -33,7 +33,8 @@ const App = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
       <div className="flex flex-col items-center">
-        <h1 className='text-5xl text-center'>PAMM's Masterpiece Mayhem</h1>
+        <img className='mb-5' src='/imgs/PAMM-logo-white.png' width={250}/>
+        <h1 className='text-5xl text-center'>Masterpiece Mayhem</h1>
       </div>
       <div className='flex flex-col mt-8 space-y-3 text-xl'>
         <button className='p-4 rounded-md font-bold' onClick={createRoom}>Create a Game Room</button>
