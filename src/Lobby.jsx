@@ -3,7 +3,7 @@ import QRCode from 'react-qr-code';
 import Footer from './Footer';
 
 function Lobby({roomName, userList, isPlayerReady, handlePlayerReady, socket}) {
-  const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
+  const qrCodeURL = `https://masterpiecemayhem.onrender.com${location.pathname}`;
   const [copySuccess, setCopySuccess] = React.useState(false);
 
   const copyURLToClipboard = () => {

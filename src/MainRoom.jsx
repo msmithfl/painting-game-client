@@ -9,7 +9,7 @@ import PostGame from './PostGame.jsx';
 const MainRoom = () => {
   const { roomName } = useParams();
   const location = useLocation();
-  const qrCodeURL = `https://painting-game-client.onrender.com${location.pathname}`;
+  const qrCodeURL = `https://masterpiecemayhem.onrender.com${location.pathname}`;
   const [userList, setUserList] = useState([]);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [userName, _] = useState(getRandomUsername());
@@ -22,7 +22,7 @@ const MainRoom = () => {
 
   // This joins a room (lobby) with the URL parameter roomName (set in previous screen, App.jsx)
   useEffect(() => {
-    const newSocket = io('https://painting-game-server.onrender.com'); //http://localhost:3001
+    const newSocket = io('https://masterpiecemayhem-server.onrender.com'); //http://localhost:3001
 
     setSocket(newSocket);
 
