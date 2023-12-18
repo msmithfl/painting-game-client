@@ -37,7 +37,7 @@ const App = () => {
       </div>
       <div className='flex flex-col mt-8 space-y-3 text-xl'>
         <button className='p-4 rounded-md font-bold' onClick={createRoom}>Create a Game Room</button>
-        <button className='p-4 rounded-md font-bold'>Play Solo</button>
+        {/* <button className='p-4 rounded-md font-bold'>Play Solo</button> */}
       </div>
       <Footer/>
     </div>
